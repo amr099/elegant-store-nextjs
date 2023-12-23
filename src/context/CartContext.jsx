@@ -9,20 +9,20 @@ export default function CartContextProvider({ children }) {
     const [count, setCount] = useState(0);
     const [total, setTotal] = useState(0);
 
-    useEffect(() => {
-        let count = 0;
-        let total = 0;
-        for (let item of cart) {
-            count += Number(item?.amount);
-            total += Number(item?.amount * item?.price);
-        }
-        setCount(count);
-        setTotal(total);
+    // useEffect(() => {
+    //     let count = 0;
+    //     let total = 0;
+    //     for (let item of cart) {
+    //         count += Number(item?.amount);
+    //         total += Number(item?.amount * item?.price);
+    //     }
+    //     setCount(count);
+    //     setTotal(total);
 
-        // if (localStorage.getItem("cart") != "undefined") {
-        //     setCart(JSON.parse(localStorage.getItem("cart")));
-        // }
-    }, [cart]);
+    //     // if (localStorage.getItem("cart") != "undefined") {
+    //     //     setCart(JSON.parse(localStorage.getItem("cart")));
+    //     // }
+    // }, [cart]);
 
     // const AddToCart = (item) => {
     //     if (!cart.find((cartItem) => cartItem?.id == item?.id)) {

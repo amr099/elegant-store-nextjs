@@ -6,7 +6,7 @@ import MobileNav from "./ui/Navbar/MobileNav";
 import Newsletter from "./ui/Newsletter/Newsletter";
 import Footer from "./ui/Footer/Footer";
 import AuthContextProvider from "@/context/AuthContext";
-import CartContextProvider from "@/context/CartContext";
+// import CartContextProvider from "@/context/CartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +20,12 @@ export default function RootLayout({ children }) {
         <html lang='en'>
             <body className={inter.className}>
                 <AuthContextProvider>
-                    <CartContextProvider>
-                        <Banner />
-                        <Navbar />
-                        <MobileNav />
-                        {children}
-                    </CartContextProvider>
+                    {/* <CartContextProvider> */}
+                    <Banner />
+                    <Navbar />
+                    <MobileNav />
+                    {children}
+                    {/* </CartContextProvider> */}
                 </AuthContextProvider>
                 <Newsletter />
                 <Footer />
