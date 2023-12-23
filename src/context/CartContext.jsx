@@ -19,7 +19,7 @@ export default function CartContextProvider({ children }) {
         setCount(count);
         setTotal(total);
 
-        if (JSON.parse(localStorage.getItem("cart")) != "undefined") {
+        if (localStorage.getItem("cart") != "undefined") {
             setCart(JSON.parse(localStorage.getItem("cart")));
         }
     }, [cart]);
