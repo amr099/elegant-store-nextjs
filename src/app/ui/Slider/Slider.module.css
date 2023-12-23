@@ -1,0 +1,40 @@
+.homeSlider {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+
+    .hero {
+        color: var(--neutral-7);
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    .span {
+        color: var(--neutral-4);
+    }
+
+    .p {
+        color: var(--neutral-4);
+        flex: 1;
+    }
+
+    .spanE {
+        font-weight: 400;
+        color: var(--neutral-7);
+    }
+}
+
+@media (max-width: 992px) {
+    .homeSlider {
+        .hero {
+            width: 100%;
+            text-align: center;
+        }
+        .p {
+            text-align: center;
+        }
+    }
+}

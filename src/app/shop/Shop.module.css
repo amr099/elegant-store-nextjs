@@ -1,0 +1,22 @@
+.shopCover {
+    margin-bottom: 3rem;
+    background-image: url(/imgs/shop-cover.png);
+    background-size: cover;
+    height: 380px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.shopGrid {
+    width: 100%;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
+    gap: 1.5rem;
+}

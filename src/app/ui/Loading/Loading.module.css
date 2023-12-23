@@ -1,0 +1,29 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    .span {
+        width: 12px;
+        height: 12px;
+        background-color: var(--neutral-4);
+        border-radius: 50%;
+        animation: loading 0.5s infinite alternate;
+        /* &:nth-of-type(2) {
+            animation-delay: 0.15s;
+        }
+        &:nth-of-type(3) {
+            animation-delay: 0.35s;
+        } */
+    }
+}
+
+@keyframes loading {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+}

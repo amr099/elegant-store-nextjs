@@ -1,0 +1,35 @@
+.newsletter {
+    background-image: url(/imgs/newsletter.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+
+    .input {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid var(--neutral-7);
+        text-align: left;
+    }
+
+    .input input {
+        border: none;
+    }
+
+    .button {
+        all: unset;
+        color: var(--neutral-4);
+        transition: color 0.4s ease-in-out;
+    }
+    .button:hover {
+        color: var(--neutral-7);
+        border: none;
+    }
+}

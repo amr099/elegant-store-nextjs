@@ -1,0 +1,9 @@
+.article {
+    .title {
+        font-size: 24px;
+        margin-bottom: 0.5rem;
+    }
+    .img {
+        margin-bottom: 0.5rem;
+    }
+}

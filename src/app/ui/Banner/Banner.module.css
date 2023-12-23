@@ -1,0 +1,24 @@
+.banner {
+    background-color: var(--neutral-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--neutral-5);
+
+    .link {
+        color: var(--blue);
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--blue);
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        .link {
+            display: none;
+        }
+    }
+}
