@@ -18,7 +18,10 @@ export default function CartContextProvider({ children }) {
         }
         setCount(count);
         setTotal(total);
-        setCart(JSON.parse(localStorage.getItem("cart")));
+
+        if (JSON.parse(localStorage.getItem("cart")) != "undefined") {
+            setCart(JSON.parse(localStorage.getItem("cart")));
+        }
     }, [cart]);
 
     const AddToCart = (item) => {
