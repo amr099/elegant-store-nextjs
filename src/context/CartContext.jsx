@@ -5,9 +5,7 @@ import { createContext, useEffect, useState } from "react";
 export const CartContext = createContext();
 
 export default function CartContextProvider({ children }) {
-    const [cart, setCart] = useState(
-        JSON.parse(localStorage.getItem("cart")) || []
-    );
+    const [cart, setCart] = useState([]);
     const [count, setCount] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -20,6 +18,7 @@ export default function CartContextProvider({ children }) {
         }
         setCount(count);
         setTotal(total);
+        setCart(JSON.parse(localStorage.getItem("cart")));
     }, [cart]);
 
     const AddToCart = (item) => {
