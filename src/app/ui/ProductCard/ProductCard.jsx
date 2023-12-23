@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./ProductCard.module.css";
 import { useContext } from "react";
 import Link from "next/link";

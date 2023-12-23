@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./MobileNav.module.css";
 import { useContext } from "react";
 // import { CartContext } from "../../context/CartContext";

@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./ProductDetails.module.css";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
