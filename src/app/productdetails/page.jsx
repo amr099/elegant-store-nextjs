@@ -11,23 +11,23 @@ import { CartContext } from "@/context/CartContext";
 
 export default function Page() {
     const [product, setProduct] = useState();
-    const params = useParams();
+    // const params = useParams();
     const { AddToCart } = useContext(CartContext);
 
-    useEffect(() => {
-        const getProduct = async () => {
-            let products = [];
-            const response = await fetch(
-                "https://657600c70febac18d4038f91.mockapi.io/api/products"
-            );
-            const data = await response.json();
-            for (let i in data) {
-                products.push(...data[i].products);
-            }
-            setProduct(products.find((p) => p.id == params.id));
-        };
-        getProduct();
-    }, [params]);
+    // useEffect(() => {
+    //     const getProduct = async () => {
+    //         let products = [];
+    //         const response = await fetch(
+    //             "https://657600c70febac18d4038f91.mockapi.io/api/products"
+    //         );
+    //         const data = await response.json();
+    //         for (let i in data) {
+    //             products.push(...data[i].products);
+    //         }
+    //         setProduct(products.find((p) => p.id == params.id));
+    //     };
+    //     getProduct();
+    // }, [params]);
     return (
         <div className='container'>
             {product ? (
