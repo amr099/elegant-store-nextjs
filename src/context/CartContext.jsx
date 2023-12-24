@@ -9,77 +9,55 @@ export default function CartContextProvider({ children }) {
     const [count, setCount] = useState(0);
     const [total, setTotal] = useState(0);
 
-    // useEffect(() => {
-    //     let count = 0;
-    //     let total = 0;
-    //     for (let item of cart) {
-    //         count += Number(item?.amount);
-    //         total += Number(item?.amount * item?.price);
-    //     }
-    //     setCount(count);
-    //     setTotal(total);
+    useEffect(() => {
+        let count = 0;
+        let total = 0;
+        for (let item of cart) {
+            count += Number(item?.amount);
+            total += Number(item?.amount * item?.price);
+        }
+        setCount(count);
+        setTotal(total);
+    }, [cart]);
 
-    //     // if (localStorage.getItem("cart") != "undefined") {
-    //     //     setCart(JSON.parse(localStorage.getItem("cart")));
-    //     // }
-    // }, [cart]);
+    const AddToCart = (item) => {
+        if (!cart.find((cartItem) => cartItem?.id == item?.id)) {
+            setCart([...cart, item]);
+        }
+    };
 
-    // const AddToCart = (item) => {
-    //     if (!cart.find((cartItem) => cartItem?.id == item?.id)) {
-    //         setCart([...cart, item]);
-    //         localStorage.setItem("cart", JSON.stringify([...cart, item]));
-    //     }
-    // };
+    const changeQuantity = (id, amount) => {
+        setCart((cart) =>
+            cart.map((item) => {
+                if (item?.id == id) {
+                    return { ...item, amount: amount };
+                } else {
+                    return { ...item };
+                }
+            })
+        );
+    };
 
-    // const changeQuantity = (id, amount) => {
-    //     setCart((cart) =>
-    //         cart.map((item) => {
-    //             if (item?.id == id) {
-    //                 return { ...item, amount: amount };
-    //             } else {
-    //                 return { ...item };
-    //             }
-    //         })
-    //     );
-    //     localStorage.setItem(
-    //         "cart",
-    //         JSON.stringify(
-    //             cart.map((item) => {
-    //                 if (item?.id == id) {
-    //                     return { ...item, amount: amount };
-    //                 } else {
-    //                     return { ...item };
-    //                 }
-    //             })
-    //         )
-    //     );
-    // };
+    const removeFromCart = (id) => {
+        setCart(cart.filter((item) => item?.id != id));
+    };
 
-    // const removeFromCart = (id) => {
-    //     setCart(cart.filter((item) => item?.id != id));
-    //     localStorage.setItem(
-    //         "cart",
-    //         JSON.stringify(cart.filter((item) => item?.id != id))
-    //     );
-    // };
-
-    // const clearCart = () => {
-    //     setCart([]);
-    //     localStorage.setItem("cart", JSON.stringify([]));
-    // };
+    const clearCart = () => {
+        setCart([]);
+    };
 
     return (
         <CartContext.Provider
-        // value={{
-        //     AddToCart,
-        //     cart,
-        //     setCart,
-        //     removeFromCart,
-        //     changeQuantity,
-        //     clearCart,
-        //     count,
-        //     total,
-        // }}
+            value={{
+                AddToCart,
+                cart,
+                setCart,
+                removeFromCart,
+                changeQuantity,
+                clearCart,
+                count,
+                total,
+            }}
         >
             {children}
         </CartContext.Provider>
