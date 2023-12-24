@@ -50,11 +50,11 @@ export default function CartContextProvider({ children }) {
         <CartContext.Provider
             value={{
                 AddToCart,
-                cart,
                 setCart,
                 removeFromCart,
                 changeQuantity,
                 clearCart,
+                cart,
                 count,
                 total,
             }}
