@@ -26,28 +26,28 @@ export default function Page() {
         else return;
     };
 
-    useEffect(() => {
-        const getProducts = async () => {
-            let products = [];
-            const response = await fetch(
-                "https://657600c70febac18d4038f91.mockapi.io/api/products"
-            );
-            const data = await response.json();
+    // useEffect(() => {
+    //     const getProducts = async () => {
+    //         let products = [];
+    //         const response = await fetch(
+    //             "https://657600c70febac18d4038f91.mockapi.io/api/products"
+    //         );
+    //         const data = await response.json();
 
-            if (params.category) {
-                setProducts(
-                    data.find((cat) => cat.name == params.category).products
-                );
-            } else {
-                for (let i in data) {
-                    products.push(...data[i].products);
-                }
-                setProducts(products);
-            }
-        };
+    //         if (params.category) {
+    //             setProducts(
+    //                 data.find((cat) => cat.name == params.category).products
+    //             );
+    //         } else {
+    //             for (let i in data) {
+    //                 products.push(...data[i].products);
+    //             }
+    //             setProducts(products);
+    //         }
+    //     };
 
-        getProducts();
-    }, []);
+    //     getProducts();
+    // }, []);
     return (
         <div className='container'>
             <div className={styles.shopCover}>
@@ -62,7 +62,7 @@ export default function Page() {
                             name='category'
                             id='category'
                             onChange={(e) => selectCategory(e)}
-                            value={params.category}
+                            // value={params.category}
                         >
                             {categories?.map((cat) => (
                                 <option value={cat} key={cat}>
