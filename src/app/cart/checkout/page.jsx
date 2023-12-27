@@ -1,7 +1,6 @@
 import styles from "../Cart.module.css";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { createOrder } from "../../lib/actions";
 import Summary from "./summary";
 import Form from "./form";
 
