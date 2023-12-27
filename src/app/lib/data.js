@@ -48,3 +48,13 @@ export async function fetchCategories() {
         console.log("Failed to fetch categories \n", e);
     }
 }
+
+export async function fetchOrders(email) {
+    try {
+        const data =
+            await sql`SELECT * from orders where user_id = (SELECT user_id from users where email = ${email})`;
+        return data.rows;
+    } catch (e) {
+        console.log("Failed to fetch orders \n", e);
+    }
+}

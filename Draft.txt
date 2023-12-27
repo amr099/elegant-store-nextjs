@@ -1,0 +1,17 @@
+TODO:- 
+    - wishlist - add and delete from wishlist
+
+    - Error handling.
+
+    - Shop optimization
+        - filters
+        - sort
+        - see more or pagination
+        - grid options
+
+    - User optimization
+        - Forget password
+        - handle remember me.
+        - update user info.
+
+Nice to add:- - dashboard - payment gateway

@@ -1,6 +1,12 @@
+import { fetchOrders } from "@/app/lib/data";
 import styles from "../Profile.module.css";
+import Order from "./../../ui/Order/Order";
+import { getServerSession } from "next-auth";
 
-export default function Page() {
+export default async function Page() {
+    const session = await getServerSession();
+    const orders = await fetchOrders(session.user.email);
+    console.log(orders[0].date.toLocaleDateString());
     return (
         <table className={styles.orders}>
             <thead className={styles.thead}>
@@ -11,7 +17,11 @@ export default function Page() {
                     <td>Price</td>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                {orders?.map((order) => (
+                    <Order item={order} key={order?.order_id} />
+                ))}
+            </tbody>
         </table>
     );
 }

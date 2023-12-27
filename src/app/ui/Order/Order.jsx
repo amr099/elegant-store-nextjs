@@ -3,24 +3,25 @@
 import { useMediaQuery } from "react-responsive";
 
 export default function Order({ item }) {
+    console.log(item);
     const isMobile = useMediaQuery({ maxWidth: 769 });
 
     return !isMobile ? (
         <tr>
-            <td>{item.id}</td>
-            <td>{item.date}</td>
-            <td>{item.status}</td>
-            <td>{item.price}</td>
+            <td>{item?.order_id}</td>
+            <td>{item?.date.toLocaleDateString()}</td>
+            <td>{item?.status}</td>
+            <td>{item?.total_amount}</td>
         </tr>
     ) : (
         <div className={styles.orderMobile}>
             <div className='flexBetween'>
                 <span>Number ID</span>
-                <p>{item.id}</p>
+                <p>{item.order_id}</p>
             </div>
             <div className='flexBetween'>
                 <span>Dates</span>
-                <p>{item.date}</p>
+                <p>{item?.date.toLocaleDateString()}</p>
             </div>
             <div className='flexBetween'>
                 <span>Status</span>
@@ -28,7 +29,7 @@ export default function Order({ item }) {
             </div>
             <div className='flexBetween'>
                 <span>Price</span>
-                <p>${item.price}</p>
+                <p>${item.total_amount}</p>
             </div>
         </div>
     );
