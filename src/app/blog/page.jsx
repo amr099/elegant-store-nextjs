@@ -17,7 +17,6 @@ export default function Page() {
                     <Article />
                     <Article />
                     <Article />
-                    <Article />
                 </div>
             </div>
         </div>

@@ -1,15 +1,11 @@
-import Link from "next/link";
+import { getServerSession } from "next-auth";
 import styles from "./Login.module.css";
+import { redirect } from "next/navigation";
 
-export default function Layout({ children }) {
-    return (
-        <section className={styles.formGrid}>
-            {/* <div className={styles.img}>
-                <Link href='/' className={styles.mainHead}>
-                    3legant<span>.</span>
-                </Link>
-            </div> */}
-            {children}
-        </section>
-    );
+export default async function Layout({ children }) {
+    const session = await getServerSession();
+    if (session) {
+        redirect("/");
+    }
+    return <section className={styles.formGrid}>{children}</section>;
 }

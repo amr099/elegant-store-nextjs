@@ -1,17 +1,18 @@
 "use client";
 
 import styles from "./FlyoutCart.module.css";
-import FlyoutCartItem from "./FlyoutCartItem";
-import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext, useState } from "react";
+import FlyoutCartItem from "./FlyoutCartItem";
 import { CartContext } from "@/context/CartContext";
+import { DrawersContext } from "@/context/DrawersContext";
 
-export default function FlyoutCart({ flycart, setFlyCart }) {
+export default function FlyoutCart() {
+    const { flyoutCart, setFlyoutCart } = useContext(DrawersContext);
     const { cart, total } = useContext(CartContext);
-
     return (
-        flycart && (
+        flyoutCart && (
             <div className={styles.flyoutCart}>
                 <div>
                     <div className='flexBetween'>
@@ -21,11 +22,11 @@ export default function FlyoutCart({ flycart, setFlyCart }) {
                             alt='close'
                             width={50}
                             height={50}
-                            onClick={() => setFlyCart(false)}
+                            onClick={() => setFlyoutCart(false)}
                         />
                     </div>
                     {cart?.map((item) => (
-                        <FlyoutCartItem key={item?.id} item={item} />
+                        <FlyoutCartItem key={item?.product_id} item={item} />
                     ))}
                 </div>
                 <div className={styles.col}>
@@ -35,7 +36,7 @@ export default function FlyoutCart({ flycart, setFlyCart }) {
                     </div>
                     <div className='flexBetween'>
                         <span className='h7'>Total</span>
-                        <span className='h7'>${total + 30}</span>
+                        <span className='h7'>{total}</span>
                     </div>
                     <Link href='/cart/checkout' className='button'>
                         Checkout

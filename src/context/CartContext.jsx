@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
@@ -21,7 +20,9 @@ export default function CartContextProvider({ children }) {
     }, [cart]);
 
     const AddToCart = (item) => {
-        if (!cart.find((cartItem) => cartItem?.id == item?.id)) {
+        if (
+            !cart.find((cartItem) => cartItem?.product_id == item?.product_id)
+        ) {
             setCart([...cart, item]);
         }
     };
@@ -29,7 +30,7 @@ export default function CartContextProvider({ children }) {
     const changeQuantity = (id, amount) => {
         setCart((cart) =>
             cart.map((item) => {
-                if (item?.id == id) {
+                if (item?.product_id == id) {
                     return { ...item, amount: amount };
                 } else {
                     return { ...item };
@@ -39,7 +40,7 @@ export default function CartContextProvider({ children }) {
     };
 
     const removeFromCart = (id) => {
-        setCart(cart.filter((item) => item?.id != id));
+        setCart(cart.filter((item) => item?.product_id != id));
     };
 
     const clearCart = () => {
@@ -50,11 +51,11 @@ export default function CartContextProvider({ children }) {
         <CartContext.Provider
             value={{
                 AddToCart,
+                cart,
                 setCart,
                 removeFromCart,
                 changeQuantity,
                 clearCart,
-                cart,
                 count,
                 total,
             }}

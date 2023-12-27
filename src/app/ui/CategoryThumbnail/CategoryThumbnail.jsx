@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CategoryThumbnail({ styles, title }) {
+export default function CategoryThumbnail({ title, id }) {
     return (
-        <div className={styles}>
+        <div className={styles.categoryThumbnail}>
             <div>
                 <h6>{title}</h6>
-                <Link href={`/shop/${title}`} className='animated'>
+                <Link href={`/shop/${id}`} className='animated'>
                     Shop Now{" "}
                     <Image
                         src='/icons/arrow-right.svg'

@@ -1,9 +1,13 @@
+"use client";
+
 import { register } from "swiper/element/bundle";
-import styles from "./Slider.module.css";
+import styles from "./HomeSlider.module.css";
+import { useEffect } from "react";
 
-register();
-
-export default function Slider() {
+export default function HomeSlider() {
+    useEffect(() => {
+        register();
+    }, []);
     const sliderImgs = [
         "/imgs/slider-1.png",
         "/imgs/slider-2.jpg",

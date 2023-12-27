@@ -1,8 +1,9 @@
 "use client";
+
+import { CartContext } from "@/context/CartContext";
 import styles from "./FlyoutCart.module.css";
-import { useContext, useRef } from "react";
 import Image from "next/image";
-import CartContext from "@/context/CartContext";
+import { useContext, useRef } from "react";
 
 export default function FlyoutCartItem({ item }) {
     const { removeFromCart, changeQuantity } = useContext(CartContext);
@@ -11,8 +12,8 @@ export default function FlyoutCartItem({ item }) {
     return (
         <div className={styles.flyoutCartItem}>
             <div className='flex'>
-                <Image
-                    src={item?.img}
+                <img
+                    src={item?.img_url}
                     alt='cartItem-img'
                     width={"80"}
                     height={"80"}
@@ -25,7 +26,7 @@ export default function FlyoutCartItem({ item }) {
                         min={1}
                         value={item?.amount}
                         onChange={() =>
-                            changeQuantity(item?.id, q.current.value)
+                            changeQuantity(item?.product_id, q.current.value)
                         }
                         ref={q}
                     />
@@ -33,10 +34,10 @@ export default function FlyoutCartItem({ item }) {
             </div>
             <div className={styles.col}>
                 <span>${Number(item?.price) * Number(item?.amount)}</span>
-                <Image
+                <img
                     src='/icons/close.svg'
                     alt='close'
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item.product_id)}
                 />
             </div>
         </div>

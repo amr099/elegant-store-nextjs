@@ -1,10 +1,10 @@
-import styles from "./Shop.module.css";
-import ProductCard from "../ui/ProductCard/ProductCard";
-import { fetchProducts, fetchCategories } from "../lib/data";
-import ShopCover from "./ShopCover";
+import { fetchCategories, fetchProductsByCategory } from "../../lib/data";
+import ProductCard from "../../ui/ProductCard/ProductCard";
+import styles from "../Shop.module.css";
+import ShopCover from "./../ShopCover";
 
-export default async function Page() {
-    const products = await fetchProducts();
+export default async function Page({ params }) {
+    const products = await fetchProductsByCategory(params.category);
     const categories = await fetchCategories();
 
     return (

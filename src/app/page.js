@@ -3,31 +3,31 @@ import Link from "next/link";
 import Article from "./ui/Article/Article";
 import Cards from "./ui/Cards/Cards";
 import Image from "next/image";
-import Slider from "./ui/Slider/Slider";
+import HomeSlider from "./ui/HomeSlider/HomeSlider";
 import ProductsSlider from "./ui/ProductsSlider/ProductsSlider";
+import { fetchCategories, fetchProducts } from "./lib/data";
 
-export default function Home() {
-    const categories = [
-        { id: 1, title: "living room", css: styles.category1 },
-        { id: 2, title: "kitchen", css: styles.category2 },
-        { id: 3, title: "bedroom", css: styles.category3 },
-    ];
+export default async function Home() {
+    const categories = await fetchCategories();
+    const products = await fetchProducts();
+
+    console.log(categories);
 
     return (
         <>
-            <Slider />
+            <HomeSlider />
             <div className='container'>
                 <div className={styles.categoriesGrid}>
                     {categories?.map((cat) => (
                         <div
                             className={cat?.css}
-                            key={cat.id}
+                            key={cat.category_id}
                             style={{ backgroundImage: cat?.img }}
                         >
                             <div className={styles.titleDiv}>
-                                <h6 className={styles.h6}>{cat?.title}</h6>
+                                <h6 className={styles.h6}>{cat?.name}</h6>
                                 <Link
-                                    href={`/shop/${cat?.title}`}
+                                    href={`/shop/${cat?.category_id}`}
                                     className='animated'
                                 >
                                     Shop Now{" "}
@@ -56,7 +56,7 @@ export default function Home() {
                     </Link>
                 </div>
 
-                <ProductsSlider />
+                <ProductsSlider items={products} />
 
                 <Cards />
             </div>
@@ -77,21 +77,21 @@ export default function Home() {
                     </Link>
                 </div>
             </div>
-            <div className={styles.sectionHeader}>
-                <h4>Articles</h4>
-                <Link href='/blog' className='animated'>
-                    More articles{" "}
-                    <Image
-                        src='/icons/arrow-right.svg'
-                        alt='arrow'
-                        width={24}
-                        height={24}
-                    />
-                </Link>
-            </div>
+            <div className='container'>
+                <div className={styles.sectionHeader}>
+                    <h4>Articles</h4>
+                    <Link href='/blog' className='animated'>
+                        More articles{" "}
+                        <Image
+                            src='/icons/arrow-right.svg'
+                            alt='arrow'
+                            width={24}
+                            height={24}
+                        />
+                    </Link>
+                </div>
 
-            <div className={styles.articlesGrid}>
-                <div className='container'>
+                <div className={styles.articlesGrid}>
                     <Article />
                     <Article />
                     <Article />

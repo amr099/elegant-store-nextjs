@@ -1,30 +1,31 @@
 "use client";
 
-import styles from "./MobileNav.module.css";
 import { useContext } from "react";
-// import { CartContext } from "../../context/CartContext";
-import Image from "next/image";
+import styles from "./MobileNav.module.css";
 import Link from "next/link";
+import { CartContext } from "@/context/CartContext";
+import { DrawersContext } from "@/context/DrawersContext";
 
-// eslint-disable-next-line react/prop-types
-export default function MobileNav({ nav, setNav }) {
-    // const { count } = useContext(CartContext);
+export default function MobileNav() {
+    const { mobileNav, setMobileNav } = useContext(DrawersContext);
+    const { count } = useContext(CartContext);
 
-    const closeMobileNav = () => {
-        setNav(false);
-    };
     return (
-        nav && (
-            <dialog className={styles.mobileNav} open onClose={closeMobileNav}>
+        mobileNav && (
+            <dialog
+                className={styles.mobileNav}
+                open
+                onClose={() => setMobileNav(false)}
+            >
                 <div className={styles.navContainer}>
                     <div className='flexBetween'>
                         <Link href='/' className={styles.main}>
                             3legant <span>.</span>
                         </Link>
                         <img
-                            src='/assets/icons/close.svg'
+                            src='/icons/close.svg'
                             alt='close'
-                            onClick={closeMobileNav}
+                            onClick={() => setMobileNav(false)}
                         />
                     </div>
                     <input type='search' placeholder='Search' />
@@ -32,7 +33,7 @@ export default function MobileNav({ nav, setNav }) {
                     <Link href='/' className='animated'>
                         Home
                     </Link>
-                    <Link to='/shop' className='animated'>
+                    <Link href='/shop' className='animated'>
                         Shop
                     </Link>
                     <Link href='/blog' className='animated'>
@@ -54,7 +55,7 @@ export default function MobileNav({ nav, setNav }) {
                                     className='icon'
                                 />
                             </Link>
-                            {/* {count != 0 && <span>{count}</span>} */}
+                            {count != 0 && <span>{count}</span>}
                         </div>
                     </div>
                     <div className='flexBetween'>

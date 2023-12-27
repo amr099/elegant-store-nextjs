@@ -1,19 +1,10 @@
-"use client";
-
 import styles from "../Cart.module.css";
-import { useContext } from "react";
-import { useRouter } from "next/router";
 import FlyoutCartItem from "@/app/ui/FlyoutCart/FlyoutCartItem";
 import Image from "next/image";
-import { CartContext } from "@/context/CartContext";
 
 export default function Page() {
-    const { cart, total } = useContext(CartContext);
-    // const router = useRouter();
-
     const onSubmit = (e) => {
         e.preventDefault();
-        // router.push("/cart/complete");
     };
     return (
         <div className={styles.checkout}>
@@ -77,9 +68,6 @@ export default function Page() {
 
             <div className={styles.order}>
                 <h6>Order summary</h6>
-                {cart?.map((item) => (
-                    <FlyoutCartItem item={item} key={item?.id} />
-                ))}
                 <div className={styles.checkbox}>
                     <input type='text' id='coupon' name='coupon' />
                     <button>Apply</button>

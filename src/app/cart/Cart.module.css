@@ -16,9 +16,9 @@
         .table {
             width: 60%;
         }
-        > .summary {
+        .summary {
             width: 35%;
-            align-self: start;
+            align-self: flex-start;
         }
     }
 

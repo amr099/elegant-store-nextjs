@@ -1,17 +1,8 @@
-"use client";
-
 import styles from "./Cart.module.css";
-import { useContext } from "react";
-import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
-import CartItem from "@/app/ui/CartItem/CartItem";
-import FlyoutCartItem from "@/app/ui/FlyoutCart/FlyoutCartItem";
 import Image from "next/image";
-import { CartContext } from "@/context/CartContext";
 
 export default function Page() {
-    const { cart, total } = useContext(CartContext);
-    const isMobile = useMediaQuery({ maxWidth: 769 });
     return (
         <div className={styles.cartContainer}>
             <table className={styles.table}>
@@ -23,15 +14,7 @@ export default function Page() {
                         <td>Subtotal</td>
                     </tr>
                 </thead>
-                <tbody>
-                    {cart?.map((item) =>
-                        isMobile ? (
-                            <FlyoutCartItem item={item} key={item?.id} />
-                        ) : (
-                            <CartItem item={item} key={item?.id} />
-                        )
-                    )}
-                </tbody>
+                <tbody></tbody>
             </table>
             <div className={styles.summary}>
                 <h6 className={styles.h6}>Cart summary</h6>

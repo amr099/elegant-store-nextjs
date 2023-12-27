@@ -1,10 +1,9 @@
 "use client";
 
-import styles from "./CartItem.module.css";
-import { useContext, useRef } from "react";
-import Image from "next/image";
 import { CartContext } from "@/context/CartContext";
-
+import styles from "./CartItem.module.css";
+import Image from "next/image";
+import { useContext, useRef } from "react";
 export default function CartItem({ item }) {
     const { removeFromCart, changeQuantity } = useContext(CartContext);
     const q = useRef(null);
@@ -24,9 +23,9 @@ export default function CartItem({ item }) {
                         <Image
                             src='/icons/close.svg'
                             alt='close'
-                            onClick={() => removeFromCart(item?.id)}
                             width={24}
                             height={24}
+                            onClick={() => removeFromCart(item?.product_id)}
                         />
                     </div>
                 </div>
@@ -36,7 +35,9 @@ export default function CartItem({ item }) {
                     type='number'
                     min={1}
                     value={item?.amount}
-                    onChange={() => changeQuantity(item?.id, q.current.value)}
+                    onChange={() =>
+                        changeQuantity(item?.product_id, q.current.value)
+                    }
                     ref={q}
                 />
             </td>
