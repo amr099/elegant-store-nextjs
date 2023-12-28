@@ -6,6 +6,14 @@ import Image from "next/image";
 
 export default function WishlistItem({ item }) {
     const isMobile = useMediaQuery({ maxWidth: 769 });
+    
+    const onDelete = async (product_id) => {
+        const response = await fetch("/api/wishlist/remove", {
+            method: "DELETE",
+            body: JSON.stringify({ product_id: product_id }),
+        });
+    };
+
     return !isMobile ? (
         <tr className={styles.wishlistItem}>
             <td>
@@ -16,9 +24,10 @@ export default function WishlistItem({ item }) {
                         alt='close'
                         width={24}
                         height={24}
+                        onClick={() => onDelete(item.product_id)}
                     />
-                    <Image
-                        src='imgs/p-color.png'
+                    <img
+                        src={item.img_url}
                         alt='cartItem-img'
                         width={80}
                         height={80}
@@ -38,9 +47,13 @@ export default function WishlistItem({ item }) {
             <td>
                 {" "}
                 <div className='flex'>
-                    <img src='/icons/close.svg' alt='close' />
                     <img
-                        src='/imgs/p-color.png'
+                        src='/icons/close.svg'
+                        alt='close'
+                        onClick={() => onDelete(item.product_id)}
+                    />
+                    <img
+                        src={item.img_url}
                         alt='cartItem-img'
                         width={"80"}
                         height={"80"}

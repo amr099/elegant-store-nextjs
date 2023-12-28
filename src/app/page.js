@@ -11,8 +11,6 @@ export default async function Home() {
     const categories = await fetchCategories();
     const products = await fetchProducts();
 
-    console.log(categories);
-
     return (
         <>
             <HomeSlider />

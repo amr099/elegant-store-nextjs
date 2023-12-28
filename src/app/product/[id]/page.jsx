@@ -3,11 +3,15 @@ import Link from "next/link";
 import { fetchProduct, fetchProducts } from "@/app/lib/data";
 import ProductDetailsSkeleton from "@/app/ui/Skeletons/ProductDetailsSkeleton";
 import ProductsSlider from "@/app/ui/ProductsSlider/ProductsSlider";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }) {
     const id = params.id;
-    const [product] = await fetchProduct(id);
+    const product = await fetchProduct(id);
     const products = await fetchProducts();
+    if (!product) {
+        notFound();
+    }
 
     return (
         <div className='container'>

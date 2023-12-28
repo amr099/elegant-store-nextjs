@@ -12,6 +12,15 @@ export default function ProductCard({ item }) {
         backgroundImage: `url(${item?.img_url})`,
     };
 
+    const addToWishlist = (product_id) => {
+        const response = fetch("/api/wishlist/add", {
+            method: "POST",
+            body: JSON.stringify({
+                product_id: product_id,
+            }),
+        });
+    };
+
     return (
         <div className={styles.product}>
             <Link href={`/product/${item?.product_id}`}>
@@ -20,11 +29,10 @@ export default function ProductCard({ item }) {
                         <div className={styles.new}>new</div>
                         <div className={styles.offer}>-50%</div>
                     </div>
-                    <Image
+                    <img
                         src='/icons/card-heart.svg'
                         alt='heart'
-                        width={24}
-                        height={24}
+                        onClick={() => addToWishlist(item.product_id)}
                     />
                 </div>
             </Link>

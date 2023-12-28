@@ -14,14 +14,14 @@
     .card:hover {
         cursor: pointer;
     }
-    .card img[alt="heart"] {
+    /* .card img[alt="heart"] {
         visibility: hidden;
         opacity: 0;
         transition: all 0.4s ease-in-out;
         align-self: start;
         justify-self: end;
         padding: 0.4rem;
-    }
+    } */
     .col {
         display: flex;
         flex-direction: column;
