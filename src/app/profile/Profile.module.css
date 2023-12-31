@@ -47,23 +47,6 @@
         flex: 1;
     }
 
-    .address {
-        display: flex;
-        gap: 1.5rem;
-        .card {
-            padding: 1rem;
-            border: 1px solid var(--neutral-4);
-            border-radius: 6px;
-            align-self: start;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-    }
-    .address span {
-        color: var(--neutral-4);
-    }
-
     .wishlist,
     .orders {
         flex: 1;
@@ -81,14 +64,17 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1rem;
         }
-        .thead td {
-            color: var(--neutral-4);
-        }
+    }
+    .thead td {
+        color: var(--neutral-4);
     }
 
     .wishlist tr {
         display: grid;
         grid-template-columns: 2fr repeat(2, 1fr);
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
     }
 
     .wishlist .wishlistItemMobile,
@@ -98,9 +84,10 @@
         align-items: stretch;
         gap: 1rem;
     }
-    /* .wishlist button {
-        width: 100%;
-    } */
+    .wishlist thead tr {
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid var(--neutral-3);
+    }
 }
 
 @media (max-width: 769px) {
@@ -115,6 +102,10 @@
         }
         .orders thead {
             visibility: hidden;
+        }
+
+        .wishlist tr {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         .wishlist thead td:not(:nth-of-type(1)) {

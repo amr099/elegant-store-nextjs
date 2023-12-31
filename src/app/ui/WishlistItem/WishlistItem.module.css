@@ -1,5 +1,9 @@
-.wishlistItem {
-    grid-template-columns: 2fr repeat(2, 1fr);
+.wishlist .wishlistItemMobile,
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
 }
 
 .wishlistItemMobile {

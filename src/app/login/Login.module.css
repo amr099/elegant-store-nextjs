@@ -1,65 +1,47 @@
-.formGrid {
-    display: grid;
+.form {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 700px;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.form > div:not(:last-of-type) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.a {
+    color: var(--blue);
+}
+
+.success {
+    color: var(--green);
+    font-size: 14px;
+}
+
+.checkbox {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.bold {
+    color:var(--neutral-7);
+    font-weight: 700;
+}
+
+.flex {
+    display: flex;
     align-items: center;
-    width: 100%;
-    min-height: 80vh;
-    .img {
-        background-image: url(/imgs/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        min-height: 100vh;
-    }
-    .mainHead {
-        font-size: 24px;
-        padding-top: 2rem;
-        text-align: center;
-        margin: 0 auto;
-        display: block;
-    }
-    .form {
-        margin: 0 auto;
-        width: 80%;
-        max-width: 700px;
-        padding: 2rem 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: stretch;
-        gap: 1rem;
-    }
-
-    .form > div:not(:last-of-type) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.3rem;
-    }
-
-    .error {
-        color: red;
-        font-size: 12px;
-    }
-
-    .a {
-        color: var(--blue);
-    }
-
-    .error {
-        color: red;
-    }
-
-    .success {
-        color: var(--green);
-    }
-
-    .checkbox {
-        padding: 0.5rem;
-        margin-right: 0.5rem;
-    }
-
-    .flex,
-    .flexBetween {
-        gap: 0.2rem !important;
-    }
 }

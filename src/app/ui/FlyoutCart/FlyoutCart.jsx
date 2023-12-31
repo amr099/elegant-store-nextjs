@@ -3,7 +3,7 @@
 import styles from "./FlyoutCart.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import FlyoutCartItem from "./FlyoutCartItem";
 import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";
@@ -15,19 +15,21 @@ export default function FlyoutCart() {
         flyoutCart && (
             <div className={styles.flyoutCart}>
                 <div>
-                    <div className='flexBetween'>
+                    <div className={styles.header}>
                         <h6>Cart</h6>
                         <Image
                             src='/icons/close.svg'
                             alt='close'
-                            width={50}
-                            height={50}
+                            width={30}
+                            height={30}
                             onClick={() => setFlyoutCart(false)}
                         />
                     </div>
+                    <div className={styles.itemsContainer}>
                     {cart?.map((item) => (
                         <FlyoutCartItem key={item?.product_id} item={item} />
                     ))}
+                        </div>
                 </div>
                 <div className={styles.col}>
                     <div className='flexBetween'>

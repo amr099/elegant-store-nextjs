@@ -9,6 +9,7 @@
     color: var(--neutral-5);
 
     .link {
+        font-weight: 700;
         color: var(--blue);
         text-transform: uppercase;
         border-bottom: 2px solid var(--blue);

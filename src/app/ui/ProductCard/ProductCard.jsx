@@ -34,8 +34,8 @@ export default function ProductCard({ item, wishlist }) {
             <Link href={`/product/${item?.product_id}`}>
                 <div className={styles.card} style={productImg}>
                     <div className={styles.col}>
-                        <div className={styles.new}>new</div>
-                        <div className={styles.offer}>-50%</div>
+                        {/* <div className={styles.new}>new</div> */}
+                        {/* <div className={styles.offer}>-50%</div> */}
                     </div>
                     {wishlist?.find(
                         (wishlistItem) =>
@@ -55,26 +55,28 @@ export default function ProductCard({ item, wishlist }) {
                     )}
                 </div>
             </Link>
-            {cart?.find(
-                (cartItem) => cartItem.product_id == item.product_id
-            ) ? (
-                "Added to cart"
-            ) : (
-                <button
-                    className={styles.button}
-                    onClick={() => AddToCart({ ...item, amount: 1 })}
-                >
-                    Add to cart
-                </button>
-            )}
+
+            <button
+                className={styles.button}
+                onClick={() => AddToCart({ ...item, amount: 1 })}
+                disabled={cart?.find(
+                    (cartItem) => cartItem.product_id == item.product_id
+                )}
+            >
+                {!cart?.find(
+                    (cartItem) => cartItem.product_id == item.product_id
+                )
+                    ? "Add to cart"
+                    : "Added to cart "}
+            </button>
 
             <div className={styles.content}>
-                <Image
+                {/* <Image
                     src='/icons/rating.svg'
                     alt='rating'
                     width={120}
                     height={24}
-                />
+                /> */}
                 <p className={styles.title}>{item?.name}</p>
                 <p className={styles.price}>
                     ${item?.price}

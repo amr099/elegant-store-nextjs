@@ -1,36 +1,3 @@
-/* @font-face {
-    font-family: poppins;
-    src: url(./assets/fonts/poppins/Poppins-Regular.ttf);
-}
-@font-face {
-    font-family: poppins-medium;
-    src: url(./assets/fonts/poppins/Poppins-Medium.ttf);
-}
-@font-face {
-    font-family: poppins-semibold;
-    src: url(./assets/fonts/poppins/Poppins-SemiBold.ttf);
-}
-@font-face {
-    font-family: poppins-bold;
-    src: url(./assets/fonts/poppins/Poppins-Bold.ttf);
-}
-@font-face {
-    font-family: inter;
-    src: url(./assets/fonts/inter/Inter-Regular.ttf);
-}
-@font-face {
-    font-family: inter-medium;
-    src: url(./assets/fonts/inter/Inter-Medium.ttf);
-}
-@font-face {
-    font-family: inter-semibold;
-    src: url(./assets/fonts/inter/Inter-SemiBold.ttf);
-}
-@font-face {
-    font-family: inter-bold;
-    src: url(./assets/fonts/inter/Inter-Bold.ttf);
-} */
-
 :root {
     --blue: #377dff;
     --green: #38cb89;
@@ -172,7 +139,8 @@ a,
 
 img[alt="close"],
 .icon {
-    padding: 0.6rem;
+    box-sizing: content-box;
+    padding: 0.5rem;
     border-radius: 50%;
     &:hover {
         background-color: var(--neutral-3);
@@ -209,6 +177,14 @@ button,
     &:active {
         background-color: var(--neutral-7);
     }
+}
+
+.button:disabled,
+button:disabled,
+.button:disabled:hover,
+button:disabled:hover {
+    color: var(--neutral-5);
+    background-color: var(--neutral-3);
 }
 
 select {
@@ -260,6 +236,10 @@ input::placeholder {
     color: var(--neutral-4);
 }
 
+input:focus {
+    border: 1px solid var(--blue);
+}
+
 @media (max-width: 769px) {
     .hero,
     h1 {
@@ -275,10 +255,10 @@ input::placeholder {
         font-size: 20px;
     }
     h5 {
-        font-size: 16px;
+        font-size: 18px;
     }
     h6 {
-        font-size: 28px !important;
+        font-size: 16px !important;
     }
     a {
         font-size: 14px;

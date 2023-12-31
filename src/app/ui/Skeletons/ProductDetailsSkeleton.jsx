@@ -9,6 +9,7 @@ export default function ProductDetailsSkeleton() {
                 <div></div>
                 <div></div>
                 <div></div>
+                <div></div>
             </div>
         </div>
     );

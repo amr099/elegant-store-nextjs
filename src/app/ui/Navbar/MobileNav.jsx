@@ -5,10 +5,16 @@ import styles from "./MobileNav.module.css";
 import Link from "next/link";
 import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";
+import { usePathname } from "next/navigation";
 
-export default function MobileNav() {
+export default function MobileNav({ wishlist }) {
+    const pathname = usePathname();
     const { mobileNav, setMobileNav } = useContext(DrawersContext);
     const { count } = useContext(CartContext);
+
+    const activeLink = {
+        fontWeight: 700,
+    };
 
     return (
         mobileNav && (
@@ -30,16 +36,25 @@ export default function MobileNav() {
                     </div>
                     <input type='search' placeholder='Search' />
                     {/* <nav> */}
-                    <Link href='/' className='animated'>
+                    <Link href='/' style={pathname === "/" ? activeLink : {}}>
                         Home
                     </Link>
-                    <Link href='/shop' className='animated'>
+                    <Link
+                        href='/shop'
+                        style={pathname === "/shop" ? activeLink : {}}
+                    >
                         Shop
                     </Link>
-                    <Link href='/blog' className='animated'>
+                    <Link
+                        href='/blog'
+                        style={pathname === "/blog" ? activeLink : {}}
+                    >
                         Blog
                     </Link>
-                    <Link href='/contact' className='animated'>
+                    <Link
+                        href='/contact'
+                        style={pathname === "/contact" ? activeLink : {}}
+                    >
                         Contact Us
                     </Link>
                     {/* </nav> */}
@@ -60,13 +75,18 @@ export default function MobileNav() {
                     </div>
                     <div className='flexBetween'>
                         <span>Whishlist</span>
-                        <Link href='/profile/wishlist'>
-                            <img
-                                src='/icons/heart.svg'
-                                alt='heart'
-                                className='icon'
-                            />
-                        </Link>
+                        <div className='flex'>
+                            <Link href='/profile/wishlist'>
+                                <img
+                                    src='/icons/heart.svg'
+                                    alt='heart'
+                                    className='icon'
+                                />
+                            </Link>
+                            {wishlist?.length != 0 && (
+                                <span>{wishlist.length}</span>
+                            )}
+                        </div>
                     </div>
                     <Link href='/login' className='button'>
                         Sign In

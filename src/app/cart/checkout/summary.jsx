@@ -15,7 +15,7 @@ export default function Summary() {
             {cart?.map((item) => (
                 <FlyoutCartItem item={item} key={item?.id} />
             ))}
-            <div className={styles.checkbox}>
+            {/* <div className={styles.checkbox}>
                 <input type='text' id='coupon' name='coupon' />
                 <button>Apply</button>
             </div>
@@ -30,11 +30,11 @@ export default function Summary() {
                     <span>JenkateMW</span>
                 </div>
                 <p className={styles.discount}>-$25.00 [Remove]</p>
-            </div>
-            <div className={styles.checkbox}>
+            </div> */}
+            {/* <div className={styles.checkbox}>
                 <span>Shipping</span>
                 <span className=''>Free</span>
-            </div>
+            </div> */}
             <div className='flexBetween'>
                 <span>Subtotal</span>
                 <span className={styles.bold}>${total}</span>

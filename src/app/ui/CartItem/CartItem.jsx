@@ -8,11 +8,11 @@ export default function CartItem({ item }) {
     const { removeFromCart, changeQuantity } = useContext(CartContext);
     const q = useRef(null);
     return (
-        <tr>
-            <td>
+        <tr className={styles.tr}>
+            <td className={styles.td}>
                 <div className='flex'>
                     <Image
-                        src={item?.img}
+                        src={item?.img_url}
                         alt='cartItem-img'
                         width={80}
                         height={80}
@@ -32,6 +32,7 @@ export default function CartItem({ item }) {
             </td>
             <td>
                 <input
+                    className={styles.input}
                     type='number'
                     min={1}
                     value={item?.amount}

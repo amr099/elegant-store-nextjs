@@ -35,10 +35,20 @@ export default function Layout({ children }) {
                     >
                         Shopping cart
                     </h6>
-                    <h6 className={step > 2 && styles.completed}>
+                    <h6
+                        className={
+                            step > 2
+                                ? styles.completed
+                                : step === 2
+                                ? styles.selected
+                                : {}
+                        }
+                    >
                         Checkout details
                     </h6>
-                    <h6 className={styles.h6}>Order complete</h6>
+                    <h6 className={step === 3 ? styles.completed : {}}>
+                        Order complete
+                    </h6>
                 </div>
                 {children}
             </div>

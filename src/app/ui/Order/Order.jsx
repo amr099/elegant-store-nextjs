@@ -1,17 +1,20 @@
 "use client";
 
 import { useMediaQuery } from "react-responsive";
+import styles from "./Order.module.css";
 
 export default function Order({ item }) {
     console.log(item);
     const isMobile = useMediaQuery({ maxWidth: 769 });
 
     return !isMobile ? (
-        <tr>
-            <td>{item?.order_id}</td>
-            <td>{item?.date.toLocaleDateString()}</td>
-            <td>{item?.status}</td>
-            <td>{item?.total_amount}</td>
+        <tr className={styles.tr}>
+            <td className={styles.td}>{item?.order_id}</td>
+            <td className={styles.td}>
+                {item?.order_date.toLocaleDateString()}
+            </td>
+            <td className={styles.td}>{item?.status}</td>
+            <td className={styles.td}>{item?.amount}</td>
         </tr>
     ) : (
         <div className={styles.orderMobile}>
@@ -21,7 +24,7 @@ export default function Order({ item }) {
             </div>
             <div className='flexBetween'>
                 <span>Dates</span>
-                <p>{item?.date.toLocaleDateString()}</p>
+                <p>{item?.order_date.toLocaleDateString()}</p>
             </div>
             <div className='flexBetween'>
                 <span>Status</span>
@@ -29,7 +32,7 @@ export default function Order({ item }) {
             </div>
             <div className='flexBetween'>
                 <span>Price</span>
-                <p>${item.total_amount}</p>
+                <p>${item.amount}</p>
             </div>
         </div>
     );

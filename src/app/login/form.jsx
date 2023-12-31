@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useReducer } from "react";
 import { initialFormState, formReducer } from "./reducer";
+import Loading from "../ui/Loading/Loading";
 
 export default function Form() {
     const [state, dispatch] = useReducer(formReducer, initialFormState);
@@ -22,7 +23,7 @@ export default function Form() {
             router.push("/profile");
             router.refresh();
         } else {
-            dispatch({ type: "ERROR", payload: "something went wrong!" });
+            dispatch({ type: "ERROR", payload: "Wrong username or password!" });
             console.log(response?.error);
         }
     };
@@ -36,14 +37,19 @@ export default function Form() {
                 </Link>
             </p>
             <div>
-                <input type='username' name='username' placeholder='username' required/>
+                <input
+                    type='username'
+                    name='username'
+                    placeholder='username'
+                    required
+                />
             </div>
             <div>
-                <input type='password' placeholder='Password' required/>
+                <input type='password' placeholder='Password' required />
             </div>
 
-            <div className='flexBetween'>
-                <div>
+            <div>
+                {/* <div>
                     <input
                         type='checkbox'
                         id='remember'
@@ -51,11 +57,12 @@ export default function Form() {
                     />
                     <label htmlFor='remember'>Remember Me</label>
                 </div>
-                <a href='#'>Forget password?</a>
+                <a href='#'>Forget password?</a> */}
+                {state.error && <p className={styles.error}>{state.error}</p>}
             </div>
-            {state.error && <p className='error'>{state.error}</p>}
-            {state.loading && <p className='error'>Signing in...</p>}
-            <button>Sign In</button>
+            <button disabled={state.loading}>
+                {state.loading ? <Loading /> : "Sign In"}
+            </button>
         </form>
     );
 }

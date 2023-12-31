@@ -204,6 +204,14 @@
             width: 20px;
         }
     }
+    .error {
+        font-size: 14px;
+        color: red;
+    }
+    .success {
+        font-size: 14px;
+        color: var(--green);
+    }
 }
 
 .complete {
@@ -220,6 +228,8 @@
     .products {
         margin: 0 auto;
     }
+
+    
 
     .info {
         display: flex;
@@ -256,10 +266,6 @@
 
         .summary {
             order: 3;
-        }
-
-        .tr {
-            grid-template-columns: repeat(4, 1fr);
         }
     }
     .cartContainer > * {

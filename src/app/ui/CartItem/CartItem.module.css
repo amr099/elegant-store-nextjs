@@ -1,0 +1,28 @@
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tr {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    align-items: center;
+}
+
+.td {
+    padding: 1rem 0;
+}
+
+.name {
+    font-size: 14px;
+}
+
+.input[type="number"] {
+    width: 70px;
+    padding: 0.5rem;
+}
+
+.img[alt="close"] {
+    width: 24px;
+}

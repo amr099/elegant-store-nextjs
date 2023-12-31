@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./Article.modules.css";
+import styles from "./Article.module.css";
 import Link from "next/link";
 
 export default function Article() {

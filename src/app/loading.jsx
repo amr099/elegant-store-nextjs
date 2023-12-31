@@ -1,5 +1,6 @@
 import React from "react";
+import FullPageLoading from "./ui/Loading/FullPageLoading";
 
 export default function loading() {
-    return <h1>loading</h1>;
+    return <FullPageLoading />;
 }

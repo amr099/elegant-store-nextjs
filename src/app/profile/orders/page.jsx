@@ -3,7 +3,7 @@ import styles from "../Profile.module.css";
 import Order from "./../../ui/Order/Order";
 
 export default async function Page() {
-    const orders = await fetchOrders();
+    const userOrders = await fetchOrders();
     return (
         <table className={styles.orders}>
             <thead className={styles.thead}>
@@ -15,7 +15,7 @@ export default async function Page() {
                 </tr>
             </thead>
             <tbody>
-                {orders?.map((order) => (
+                {userOrders?.map((order) => (
                     <Order item={order} key={order?.order_id} />
                 ))}
             </tbody>

@@ -8,19 +8,24 @@
     top: 0;
     right: 0;
     width: 500px;
-    min-height: 100vh;
+    height: 100vh;
     z-index: 2;
     background-color: #fff;
     border: 2px solid #000;
 
-    /* h6 {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 1rem;
     }
-    a:nth-of-type(2) {
-        font: 14px inter-semibold;
+
+    .col a:nth-of-type(2) {
+        font-size: 14px;
         display: block;
         text-align: center;
-    } */
+    }
+
     .button {
         width: 100%;
         padding: 1rem 0;
@@ -47,21 +52,17 @@
         gap: 1rem;
     }
 
-    /* span {
-        font: 14px inter-semibold;
-    }
-
-    img[alt="close"] {
+    .col img[alt="close"] {
         align-self: flex-end;
     }
 
-    input {
+    .col input {
         max-width: 70px !important;
-    } */
+    }
 }
 
 @media (max-width: 769px) {
     .flyoutCart {
-        width: 100%;
+        width: 90%;
     }
 }

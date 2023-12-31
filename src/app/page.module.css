@@ -1,9 +1,9 @@
 .categoriesGrid {
     margin: 2rem 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 500px));
+    grid-template-columns: repeat(auto-fit, minmax(260px, calc(50% - 1rem)));
     grid-template-rows: repeat(2, 320px);
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
 
     .category {
@@ -22,10 +22,6 @@
     }
 
     .titleDiv {
-        padding: 2rem;
-    }
-
-    .content {
         padding: 2rem;
     }
 }
@@ -67,6 +63,7 @@
     margin: 3rem 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    width: 100%;
     gap: 2rem;
 }
 
@@ -82,6 +79,7 @@
 @media (max-width: 769px) {
     .categoriesGrid {
         grid-template-rows: repeat(3, 320px);
+        grid-template-columns: 100%;
         .category {
             .titleDiv {
                 padding: 1rem;

@@ -4,24 +4,28 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     const session = await getServerSession();
-    const { amount } = await request.json();
-    const newDate = new Date();
-    const formattedDate = newDate.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-    });
+
+    if (!session.user.email) {
+        return NextResponse.json(
+            { success: false, error: "You have to login first." },
+            { status: 400 }
+        );
+    }
+    const { name, email, phone, address, city, zip, amount } =
+        await request.json();
 
     try {
         const response =
-            await sql`INSERT INTO orders (user_id, date, total_amount,status)
+            await sql`INSERT INTO orders (user_id, status, amount, name, email, phone, city, address, zip)
                     VALUES (
-                    (SELECT user_id FROM users WHERE email = ${session.user.email}),
-                    ${formattedDate}, 
-                    ${amount},
-                    'PENDING' );`;
+                        (SELECT user_id FROM users WHERE email = ${session.user.email}),'PENDING',${amount},
+                        ${name},${email},${phone},${city},${address},${zip});`;
+        return NextResponse.json({ success: true });
     } catch (e) {
-        console.log("Failed to create new order \n", e);
+        console.log(e, "\n Failed to create new order");
+        return NextResponse.json(
+            { success: false, error: "Failed to create new order" },
+            { status: 500 }
+        );
     }
-    return NextResponse.json({ message: "SUCCESS" });
 }

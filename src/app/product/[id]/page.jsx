@@ -24,10 +24,14 @@ export default async function Page({ params }) {
                     className={styles.thumbnail}
                 /> */}
                         {/* <div className={styles.gallary}> */}
-                        <img src={product.img_url} alt='p-img' />
+                        <img
+                            src={product.img_url}
+                            alt='p-img'
+                            className={styles.img}
+                        />
                         {/* </div> */}
                         <div className={styles.details}>
-                            <img src='/icons/rating.svg' alt='rating' />
+                            {/* <img src='/icons/rating.svg' alt='rating' /> */}
                             <h4>{product.name}</h4>
                             <p className={styles.desc}>{product.description}</p>
                             <div className='flex'>
@@ -38,8 +42,8 @@ export default async function Page({ params }) {
                                     </span>
                                 )} */}
                             </div>
-                            <span>Measurements</span>
-                            <p>17 1/2x20 5/8 </p>
+                            {/* <span>Measurements</span>
+                            <p>17 1/2x20 5/8 </p> */}
                             {/* <span>Choose Color</span>
                     <p>Black</p>
                     <div className='flex'>

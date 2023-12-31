@@ -69,7 +69,7 @@ export async function fetchCategories() {
     }
 }
 
-export async function fetchOrders(email) {
+export async function fetchOrders() {
     unstable_noStore();
     const session = await getServerSession();
 
@@ -82,17 +82,27 @@ export async function fetchOrders(email) {
     }
 }
 
+export async function fetchLastOrder() {
+    try {
+        const data =
+            await sql`SELECT * FROM orders ORDER BY order_id DESC LIMIT 1;`;
+        return data.rows[0];
+    } catch (e) {
+        console.log("Failed to fetch last order \n", e);
+    }
+}
+
 export async function fetchWhishlist() {
     unstable_noStore();
 
     const session = await getServerSession();
     try {
-        const data = await sql`SELECT * FROM products WHERE product_id = 
+        const data = await sql`SELECT * FROM products WHERE product_id IN 
                 (SELECT product_id FROM wishlist_items WHERE wishlist_id = 
                 (SELECT id FROM wishlists WHERE user_id =
                 (SELECT user_id FROM users WHERE email = ${session.user.email})))`;
         return data.rows;
     } catch (e) {
-        console.log("Failed to fetch wishlists \n", e);
+        console.log("Failed to fetch wishlist \n", e);
     }
 }
