@@ -3,11 +3,11 @@
 import styles from "./ProductCard.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/context/CartContext";
 
-export default function ProductCard({ item }) {
-    const { AddToCart } = useContext(CartContext);
+export default function ProductCard({ item, wishlist }) {
+    const { cart, AddToCart } = useContext(CartContext);
     const productImg = {
         backgroundImage: `url(${item?.img_url})`,
     };
@@ -15,6 +15,14 @@ export default function ProductCard({ item }) {
     const addToWishlist = (product_id) => {
         const response = fetch("/api/wishlist/add", {
             method: "POST",
+            body: JSON.stringify({
+                product_id: product_id,
+            }),
+        });
+    };
+    const removeFromWishlist = (product_id) => {
+        const response = fetch("/api/wishlist/remove", {
+            method: "DELETE",
             body: JSON.stringify({
                 product_id: product_id,
             }),
@@ -29,19 +37,37 @@ export default function ProductCard({ item }) {
                         <div className={styles.new}>new</div>
                         <div className={styles.offer}>-50%</div>
                     </div>
-                    <img
-                        src='/icons/card-heart.svg'
-                        alt='heart'
-                        onClick={() => addToWishlist(item.product_id)}
-                    />
+                    {wishlist?.find(
+                        (wishlistItem) =>
+                            wishlistItem.product_id == item.product_id
+                    ) ? (
+                        <img
+                            src='/icons/heart-fill.svg'
+                            alt='heart'
+                            onClick={() => removeFromWishlist(item.product_id)}
+                        />
+                    ) : (
+                        <img
+                            src='/icons/card-heart.svg'
+                            alt='heart'
+                            onClick={() => addToWishlist(item.product_id)}
+                        />
+                    )}
                 </div>
             </Link>
-            <button
-                className={styles.button}
-                onClick={() => AddToCart({ ...item, amount: 1 })}
-            >
-                Add to cart
-            </button>
+            {cart?.find(
+                (cartItem) => cartItem.product_id == item.product_id
+            ) ? (
+                "Added to cart"
+            ) : (
+                <button
+                    className={styles.button}
+                    onClick={() => AddToCart({ ...item, amount: 1 })}
+                >
+                    Add to cart
+                </button>
+            )}
+
             <div className={styles.content}>
                 <Image
                     src='/icons/rating.svg'

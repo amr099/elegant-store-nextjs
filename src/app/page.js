@@ -5,11 +5,12 @@ import Cards from "./ui/Cards/Cards";
 import Image from "next/image";
 import HomeSlider from "./ui/HomeSlider/HomeSlider";
 import ProductsSlider from "./ui/ProductsSlider/ProductsSlider";
-import { fetchCategories, fetchProducts } from "./lib/data";
+import { fetchCategories, fetchProducts, fetchWhishlist } from "./lib/data";
 
 export default async function Home() {
     const categories = await fetchCategories();
     const products = await fetchProducts();
+    const wishlist = await fetchWhishlist();
 
     return (
         <>
@@ -18,14 +19,14 @@ export default async function Home() {
                 <div className={styles.categoriesGrid}>
                     {categories?.map((cat) => (
                         <div
-                            className={cat?.css}
+                            className={styles.category}
                             key={cat.category_id}
-                            style={{ backgroundImage: cat?.img }}
+                            style={{ backgroundImage: `url(${cat.img_url})` }}
                         >
                             <div className={styles.titleDiv}>
                                 <h6 className={styles.h6}>{cat?.name}</h6>
                                 <Link
-                                    href={`/shop/${cat?.category_id}`}
+                                    href={`/shop/${cat?.name}`}
                                     className='animated'
                                 >
                                     Shop Now{" "}
@@ -54,7 +55,7 @@ export default async function Home() {
                     </Link>
                 </div>
 
-                <ProductsSlider items={products} />
+                <ProductsSlider items={products} wishlist={wishlist} />
 
                 <Cards />
             </div>

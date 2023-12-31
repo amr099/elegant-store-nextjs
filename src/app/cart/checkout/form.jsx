@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import styles from "../Cart.module.css";
 
 export default function Form() {
+    const { replace } = useRouter();
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -17,6 +19,7 @@ export default function Form() {
 
             if (response.ok) {
                 const data = await response.json();
+                replace("/cart/complete");
                 console.log(
                     "Order placed successfully. Order ID:",
                     data.orderId

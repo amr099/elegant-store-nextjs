@@ -4,32 +4,38 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar({ user }) {
     const isMobile = useMediaQuery({ maxWidth: 769 });
+    const { replace } = useRouter();
 
     const links = [
-        { title: "Account", link: "" },
-        { title: "Address", link: "/profile/address" },
+        { title: "Account", link: "/profile" },
         { title: "Orders", link: "/profile/orders" },
         { title: "Wishlist", link: "/profile/wishlist" },
     ];
 
+    const onChange = (link) => {
+        replace(link);
+    };
 
     return (
         <div className={styles.profile}>
             <div className={styles.info}>
-                <Image
-                    // src={user?.avatar}
+                <img
+                    src='/imgs/user-placeholder.jpg'
                     alt='profile'
-                    width={50}
-                    height={50}
                 />
                 <h6 className='h7'>{user?.email}</h6>
             </div>
             {isMobile ? (
                 <>
-                    <select name='nav' id='nav' >
+                    <select
+                        name='nav'
+                        id='nav'
+                        onChange={(e) => onChange(e.target.value)}
+                    >
                         {links.map((link) => (
                             <option key={link.title} value={link.link}>
                                 {link.title}

@@ -3,12 +3,15 @@ import Link from "next/link";
 import styles from "./Login.module.css";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useReducer } from "react";
+import { initialFormState, formReducer } from "./reducer";
 
 export default function Form() {
-    const [error, setError] = useState("");
+    const [state, dispatch] = useReducer(formReducer, initialFormState);
     const router = useRouter();
+
     const onSubmit = async (e) => {
+        dispatch({ type: "LOADING" });
         e.preventDefault();
         const response = await signIn("credentials", {
             username: e.target[0].value,
@@ -19,7 +22,8 @@ export default function Form() {
             router.push("/profile");
             router.refresh();
         } else {
-            setError(response?.error);
+            dispatch({ type: "ERROR", payload: "something went wrong!" });
+            console.log(response?.error);
         }
     };
     return (
@@ -32,10 +36,10 @@ export default function Form() {
                 </Link>
             </p>
             <div>
-                <input type='username' name='username' placeholder='username' />
+                <input type='username' name='username' placeholder='username' required/>
             </div>
             <div>
-                <input type='password' placeholder='Password' />
+                <input type='password' placeholder='Password' required/>
             </div>
 
             <div className='flexBetween'>
@@ -49,7 +53,8 @@ export default function Form() {
                 </div>
                 <a href='#'>Forget password?</a>
             </div>
-            {error && <p className='error'>{error}</p>}
+            {state.error && <p className='error'>{state.error}</p>}
+            {state.loading && <p className='error'>Signing in...</p>}
             <button>Sign In</button>
         </form>
     );

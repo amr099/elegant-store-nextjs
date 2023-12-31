@@ -1,13 +1,8 @@
-"use client";
-
 import { register } from "swiper/element/bundle";
 import styles from "./HomeSlider.module.css";
-import { useEffect } from "react";
+register();
 
 export default function HomeSlider() {
-    useEffect(() => {
-        register();
-    }, []);
     const sliderImgs = [
         "/imgs/slider-1.png",
         "/imgs/slider-2.jpg",
@@ -35,13 +30,13 @@ export default function HomeSlider() {
                                 media='(min-width:465px)'
                                 srcSet={img}
                                 width='100%'
-                                height='260px'
+                                height='200px'
                             />
                             <img
                                 src={img}
                                 alt='Flowers'
                                 width='100%'
-                                height='260px'
+                                height='200px'
                             />
                         </picture>
                     </swiper-slide>

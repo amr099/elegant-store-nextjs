@@ -7,9 +7,15 @@ export async function POST(request: Request) {
         const { username, name, email, password } = await request.json();
         // validation with ZOD;
         const hashedPassword = await hash(password, 10);
-        const repsonse = await sql`
+        const newUser = await sql`
             INSERT into users (name,username,email,password) VALUES
             (${name},${username},${email},${hashedPassword})
+        `;
+        const user = await sql`
+            SELECT user_id from users where username = ${username};
+        `;
+        const newWishlist = await sql`
+            INSERT into wishlists (user_id) values (${user.rows[0].user_id})
         `;
     } catch (e) {
         console.log(e);

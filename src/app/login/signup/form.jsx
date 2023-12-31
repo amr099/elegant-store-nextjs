@@ -2,10 +2,16 @@
 
 import Link from "next/link";
 import styles from "../Login.module.css";
+import { initialFormState, formReducer } from "../reducer";
+import { useReducer } from "react";
+
 
 export default function Form() {
+    const [state, dispatch] = useReducer(formReducer, initialFormState);
+
     const onSubmit = async (e) => {
         try {
+            dispatch({ type: "LOADING" });
             e.preventDefault();
             const response = await fetch("/api/auth/register", {
                 method: "POST",
@@ -16,7 +22,9 @@ export default function Form() {
                     password: e.target[3].value,
                 }),
             });
+            dispatch({ type: "SUCCESS" });
         } catch (e) {
+            dispatch({ type: "ERROR", payload: "something went wrong!" });
             console.log(e);
         }
     };
@@ -33,13 +41,13 @@ export default function Form() {
                 <input type='name' name='name' placeholder='Your name' />
             </div>
             <div>
-                <input name='username' placeholder='Username' />
+                <input name='username' placeholder='Username' required/>
             </div>
             <div>
-                <input name='email' type='email' placeholder='Email address' />
+                <input name='email' type='email' placeholder='Email address' required/>
             </div>
             <div>
-                <input type='password' placeholder='Password' />
+                <input type='password' placeholder='Password' required/>
             </div>
             <div>
                 <input type='checkbox' id='agree' className={styles.checkbox} />
@@ -48,7 +56,9 @@ export default function Form() {
                     <span>Terms of Use </span>
                 </label>
             </div>
-
+            {state.error && <p className='error'>{state.error}</p>}
+            {state.loading && <p>Signing up...</p>}
+            {state.success && <p className="success">You have been registered successfully.</p>}
             <button>Sign Up</button>
         </form>
     );

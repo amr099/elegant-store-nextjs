@@ -4,7 +4,7 @@ import { register } from "swiper/element/bundle";
 import ProductCard from "../ProductCard/ProductCard";
 import { useEffect, useRef } from "react";
 
-export default function ProductsSlider({ items }) {
+export default function ProductsSlider({ items, wishlist }) {
     const swiperRef = useRef(null);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function ProductsSlider({ items }) {
         >
             {items?.map((item) => (
                 <swiper-slide key={item.id}>
-                    <ProductCard item={item} />
+                    <ProductCard item={item} wishlist={wishlist} />
                 </swiper-slide>
             ))}
         </swiper-container>

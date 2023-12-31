@@ -32,25 +32,6 @@
         padding: 2rem;
         overflow-x: auto;
 
-        .h6 {
-            --color: var(--neutral-4);
-            display: inline;
-            margin-right: 20%;
-            white-space: nowrap;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--color);
-            color: var(--color);
-            font-size: 20px;
-        }
-        .h6:before {
-            counter-increment: step;
-            content: counter(step);
-            padding: 8px 10px;
-            background-color: var(--color);
-            border-radius: 50%;
-            color: #fff;
-            margin-right: 0.5rem;
-        }
         .completed {
             --color: green;
         }
@@ -58,6 +39,28 @@
             --color: var(--neutral-7);
         }
     }
+
+    .steps h6 {
+        --color: var(--neutral-4);
+        display: inline;
+        margin-right: 20%;
+        white-space: nowrap;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--color);
+        color: var(--color);
+        font-size: 20px;
+    }
+
+    .steps h6:before {
+        counter-increment: step;
+        content: counter(step);
+        padding: 8px 10px;
+        background-color: var(--color);
+        border-radius: 50%;
+        color: #fff;
+        margin-right: 0.5rem;
+    }
+
     .col {
         display: flex;
         flex-direction: column;
