@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
 import Banner from "./ui/Banner/Banner";
 import Navbar from "./ui/Navbar/Navbar";
 import MobileNav from "./ui/Navbar/MobileNav";

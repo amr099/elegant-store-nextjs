@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./ProductCard.module.css";
+import styles from "./ProductCard.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useContext, useState } from "react";

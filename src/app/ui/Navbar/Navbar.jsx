@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./Navbar.module.css";
+import styles from "./Navbar.module.scss";
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";

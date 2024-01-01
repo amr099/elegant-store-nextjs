@@ -1,4 +1,4 @@
-import styles from "./Banner.module.css";
+import styles from "./Banner.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 

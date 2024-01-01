@@ -1,4 +1,4 @@
-import styles from "./search.module.css";
+import styles from "./search.module.scss";
 import ProductCard from "@/app/ui/ProductCard/ProductCard";
 import { searchProduct } from "@/app/lib/data";
 import SearchInput from "./SearchInput";

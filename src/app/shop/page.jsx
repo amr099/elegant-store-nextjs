@@ -1,4 +1,4 @@
-import styles from "./Shop.module.css";
+import styles from "./Shop.module.scss";
 import ProductCard from "../ui/ProductCard/ProductCard";
 import {
     fetchProducts,

@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import styles from "./search.module.css";
 
 export default function SearchInput() {
     const pathname = usePathname();
@@ -15,7 +14,7 @@ export default function SearchInput() {
         margin: "2rem auto 4rem",
     };
 
-    const onChange = (q) => {
+    const onSearch = (q) => {
         const params = new URLSearchParams(searchParams);
         params.set("q", q);
         replace(`${pathname}?${params.toString()}`);
@@ -26,7 +25,7 @@ export default function SearchInput() {
             type='search'
             placeholder='Search'
             style={style}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onSearch(e.target.value)}
         ></input>
     );
 }

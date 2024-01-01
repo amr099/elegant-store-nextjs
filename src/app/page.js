@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import Link from "next/link";
 import Article from "./ui/Article/Article";
 import Cards from "./ui/Cards/Cards";

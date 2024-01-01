@@ -2,7 +2,7 @@
 
 import FlyoutCartItem from "@/app/ui/FlyoutCart/FlyoutCartItem";
 import Image from "next/image";
-import styles from "../Cart.module.css";
+import styles from "../Cart.module.scss";
 import { CartContext } from "@/context/CartContext";
 import { useContext } from "react";
 

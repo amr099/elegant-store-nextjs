@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import styles from "./Cart.module.css";
+import styles from "./Cart.module.scss";
 import { useState, useEffect } from "react";
 
 export default function Layout({ children }) {

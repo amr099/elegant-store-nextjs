@@ -1,7 +1,7 @@
 "use client";
 
 import { CartContext } from "@/context/CartContext";
-import styles from "./FlyoutCart.module.css";
+import styles from "./FlyoutCart.module.scss";
 import Image from "next/image";
 import { useContext, useRef } from "react";
 

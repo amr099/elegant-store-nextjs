@@ -1,7 +1,7 @@
 "use client";
 
 import { CartContext } from "@/context/CartContext";
-import styles from "./CartItem.module.css";
+import styles from "./CartItem.module.scss";
 import Image from "next/image";
 import { useContext, useRef } from "react";
 export default function CartItem({ item }) {

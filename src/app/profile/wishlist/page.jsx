@@ -1,6 +1,6 @@
-import styles from "../Profile.module.css";
+import styles from "../Profile.module.scss";
 import { fetchWhishlist } from "@/app/lib/data";
-import Wishlist from './wishlist';
+import Wishlist from "./wishlist";
 export default async function Page() {
     const wishlist = await fetchWhishlist();
 
@@ -14,7 +14,7 @@ export default async function Page() {
                 </tr>
             </thead>
             <tbody>
-                <Wishlist wishlist={wishlist}/>
+                <Wishlist wishlist={wishlist} />
             </tbody>
         </table>
     );

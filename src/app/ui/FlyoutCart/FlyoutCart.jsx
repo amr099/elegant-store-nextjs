@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./FlyoutCart.module.css";
+import styles from "./FlyoutCart.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
@@ -26,10 +26,13 @@ export default function FlyoutCart() {
                         />
                     </div>
                     <div className={styles.itemsContainer}>
-                    {cart?.map((item) => (
-                        <FlyoutCartItem key={item?.product_id} item={item} />
-                    ))}
-                        </div>
+                        {cart?.map((item) => (
+                            <FlyoutCartItem
+                                key={item?.product_id}
+                                item={item}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <div className={styles.col}>
                     <div className='flexBetween'>

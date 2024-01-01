@@ -1,5 +1,5 @@
 import { fetchOrders } from "@/app/lib/data";
-import styles from "../Profile.module.css";
+import styles from "../Profile.module.scss";
 import Order from "./../../ui/Order/Order";
 
 export default async function Page() {

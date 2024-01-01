@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./Cards.module.css";
+import styles from "./Cards.module.scss";
 
 export default function Cards() {
     return (

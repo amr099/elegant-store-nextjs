@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./Cart.module.css";
+import styles from "./Cart.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useContext } from "react";

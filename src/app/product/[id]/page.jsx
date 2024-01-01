@@ -9,7 +9,7 @@ export default async function Page({ params }) {
     const { id } = params;
     const product = await fetchProduct(id);
     const products = await fetchProducts();
-    const wishlist = session.user.email ? await fetchWhishlist() : [];
+    const wishlist = session?.user?.email ? await fetchWhishlist() : [];
     if (!product) {
         notFound();
     }

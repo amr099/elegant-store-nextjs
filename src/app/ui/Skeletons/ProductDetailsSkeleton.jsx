@@ -1,4 +1,4 @@
-import styles from "./Skeletons.module.css";
+import styles from "./Skeletons.module.scss";
 
 export default function ProductDetailsSkeleton() {
     return (

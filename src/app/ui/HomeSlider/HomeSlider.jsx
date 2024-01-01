@@ -1,5 +1,5 @@
 import { register } from "swiper/element/bundle";
-import styles from "./HomeSlider.module.css";
+import styles from "./HomeSlider.module.scss";
 register();
 
 export default function HomeSlider() {

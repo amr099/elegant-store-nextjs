@@ -1,4 +1,4 @@
-import styles from "../Cart.module.css";
+import styles from "../Cart.module.scss";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Summary from "./summary";

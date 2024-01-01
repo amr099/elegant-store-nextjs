@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../Cart.module.css";
+import styles from "../Cart.module.scss";
 import { fetchLastOrder } from "@/app/lib/data";
 
 export default async function Page() {
@@ -27,7 +27,9 @@ export default async function Page() {
                     <span>Credit Card</span>
                 </div>
             </div>
-            <Link href='/profile/orders' className='button'>Purchase History</Link>
+            <Link href='/profile/orders' className='button'>
+                Purchase History
+            </Link>
         </div>
     );
 }

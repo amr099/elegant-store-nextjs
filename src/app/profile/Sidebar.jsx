@@ -1,5 +1,5 @@
 "use client";
-import styles from "./Profile.module.css";
+import styles from "./Profile.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
@@ -23,10 +23,7 @@ export default function Sidebar({ user }) {
     return (
         <div className={styles.profile}>
             <div className={styles.info}>
-                <img
-                    src='/imgs/user-placeholder.jpg'
-                    alt='profile'
-                />
+                <img src='/imgs/user-placeholder.jpg' alt='profile' />
                 <h6 className='h7'>{user?.email}</h6>
             </div>
             {isMobile ? (

@@ -1,4 +1,4 @@
-import styles from "./Contact.module.css";
+import styles from "./Contact.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Cards from "../ui/Cards/Cards";

@@ -1,4 +1,4 @@
-import styles from "./Profile.module.css";
+import styles from "./Profile.module.scss";
 import { getServerSession } from "next-auth";
 import Sidebar from "./Sidebar";
 import { redirect } from "next/navigation";

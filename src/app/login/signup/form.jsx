@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "../Login.module.css";
+import styles from "../Login.module.scss";
 import { initialFormState, formReducer } from "../reducer";
 import { useReducer } from "react";
 import Loading from "@/app/ui/Loading/Loading";

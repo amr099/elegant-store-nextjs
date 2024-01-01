@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import styles from "./Login.module.css";
+import styles from "./Login.module.scss";
 import { redirect } from "next/navigation";
 
 export default async function Layout({ children }) {

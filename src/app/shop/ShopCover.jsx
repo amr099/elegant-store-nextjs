@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./Shop.module.css";
+import styles from "./Shop.module.scss";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 export default function ShopCover({ categories, category }) {

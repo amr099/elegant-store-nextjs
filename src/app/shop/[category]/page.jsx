@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { fetchCategories, fetchProductsByCategory } from "../../lib/data";
 import ProductCard from "../../ui/ProductCard/ProductCard";
-import styles from "../Shop.module.css";
+import styles from "../Shop.module.scss";
 import ShopCover from "../ShopCover";
 
 export default async function Page({ params, searchParams }) {

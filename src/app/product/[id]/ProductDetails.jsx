@@ -1,15 +1,11 @@
 "use client";
 
-import styles from "./Product.module.css";
+import styles from "./Product.module.scss";
 import Link from "next/link";
-import ProductDetailsSkeleton from "@/app/ui/Skeletons/ProductDetailsSkeleton";
 import { useContext, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { CartContext } from "@/context/CartContext";
 export default function ProductDetails({ product, wishlist }) {
     const [wishlistState, setWishlist] = useState(wishlist);
-    const router = useRouter();
-    const pathname = usePathname();
     const { cart, AddToCart } = useContext(CartContext);
 
     const addToWishlist = async (product_id) => {

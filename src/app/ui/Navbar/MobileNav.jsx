@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import styles from "./MobileNav.module.css";
+import styles from "./MobileNav.module.scss";
 import Link from "next/link";
 import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";

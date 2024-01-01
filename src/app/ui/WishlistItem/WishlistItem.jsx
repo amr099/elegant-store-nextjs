@@ -1,7 +1,7 @@
 "use client";
 
 import { useMediaQuery } from "react-responsive";
-import styles from "./WishlistItem.module.css";
+import styles from "./WishlistItem.module.scss";
 import Image from "next/image";
 
 export default function WishlistItem({ item, onDelete }) {

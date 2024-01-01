@@ -1,5 +1,5 @@
 import Article from "../ui/Article/Article";
-import styles from "./Blog.module.css";
+import styles from "./Blog.module.scss";
 
 export default function Page() {
     return (

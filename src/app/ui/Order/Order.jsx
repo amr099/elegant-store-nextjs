@@ -1,7 +1,7 @@
 "use client";
 
 import { useMediaQuery } from "react-responsive";
-import styles from "./Order.module.css";
+import styles from "./Order.module.scss";
 
 export default function Order({ item }) {
     console.log(item);

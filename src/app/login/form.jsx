@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import styles from "./Login.module.css";
+import styles from "./Login.module.scss";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useReducer } from "react";

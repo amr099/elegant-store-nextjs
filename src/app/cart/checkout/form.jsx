@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import styles from "../Cart.module.css";
+import styles from "../Cart.module.scss";
 import { useContext, useReducer } from "react";
 import { CartContext } from "./../../../context/CartContext";
 import Loading from "@/app/ui/Loading/Loading";
