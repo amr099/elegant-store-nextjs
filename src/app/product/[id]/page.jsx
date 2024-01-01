@@ -16,7 +16,6 @@ export default async function Page({ params }) {
     return (
         <div className='container'>
             <ProductDetails product={product} wishlist={wishlist} />
-
             <ProductsSlider items={products} />
         </div>
     );

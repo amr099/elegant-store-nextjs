@@ -94,14 +94,14 @@ export default function ProductDetails({ product, wishlist }) {
                             )}
                             onClick={() => AddToCart({ ...product, amount: 1 })}
                         >
-                            {cart.find(
+                            {cart?.find(
                                 (cartItem) =>
                                     cartItem.product_id == product.product_id
                             )
                                 ? "Added to cart"
                                 : "Add to cart"}
                         </button>
-                        {!wishlistState.find(
+                        {!wishlistState?.find(
                             (item) => item.product_id == product.product_id
                         ) ? (
                             <button
