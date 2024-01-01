@@ -12,22 +12,22 @@ export default function ProductCard({ item, wishlist }) {
         backgroundImage: `url(${item?.img_url})`,
     };
 
-    const addToWishlist = (product_id) => {
-        const response = fetch("/api/wishlist/add", {
-            method: "POST",
-            body: JSON.stringify({
-                product_id: product_id,
-            }),
-        });
-    };
-    const removeFromWishlist = (product_id) => {
-        const response = fetch("/api/wishlist/remove", {
-            method: "DELETE",
-            body: JSON.stringify({
-                product_id: product_id,
-            }),
-        });
-    };
+    // const addToWishlist = (product_id) => {
+    //     const response = fetch("/api/wishlist/add", {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             product_id: product_id,
+    //         }),
+    //     });
+    // };
+    // const removeFromWishlist = (product_id) => {
+    //     const response = fetch("/api/wishlist/remove", {
+    //         method: "DELETE",
+    //         body: JSON.stringify({
+    //             product_id: product_id,
+    //         }),
+    //     });
+    // };
 
     return (
         <div className={styles.product}>
@@ -37,7 +37,7 @@ export default function ProductCard({ item, wishlist }) {
                         {/* <div className={styles.new}>new</div> */}
                         {/* <div className={styles.offer}>-50%</div> */}
                     </div>
-                    {wishlist?.find(
+                    {/* {wishlist?.find(
                         (wishlistItem) =>
                             wishlistItem.product_id == item.product_id
                     ) ? (
@@ -52,7 +52,7 @@ export default function ProductCard({ item, wishlist }) {
                             alt='heart'
                             onClick={() => addToWishlist(item.product_id)}
                         />
-                    )}
+                    )} */}
                 </div>
             </Link>
 

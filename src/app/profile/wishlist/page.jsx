@@ -1,10 +1,8 @@
 import styles from "../Profile.module.css";
 import { fetchWhishlist } from "@/app/lib/data";
-import WishlistItem from "./../../ui/WishlistItem/WishlistItem";
-import { getServerSession } from "next-auth";
+import Wishlist from './wishlist';
 export default async function Page() {
-    const session = await getServerSession();
-    const wishlistItems = await fetchWhishlist(session.user.email);
+    const wishlist = await fetchWhishlist();
 
     return (
         <table className={styles.wishlist}>
@@ -16,9 +14,7 @@ export default async function Page() {
                 </tr>
             </thead>
             <tbody>
-                {wishlistItems?.map((item) => (
-                    <WishlistItem item={item} key={item.product_id} />
-                ))}
+                <Wishlist wishlist={wishlist}/>
             </tbody>
         </table>
     );

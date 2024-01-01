@@ -7,7 +7,7 @@ import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";
 import { usePathname } from "next/navigation";
 
-export default function MobileNav({ wishlist }) {
+export default function MobileNav({ wishlist, user }) {
     const pathname = usePathname();
     const { mobileNav, setMobileNav } = useContext(DrawersContext);
     const { count } = useContext(CartContext);
@@ -84,13 +84,19 @@ export default function MobileNav({ wishlist }) {
                                 />
                             </Link>
                             {wishlist?.length != 0 && (
-                                <span>{wishlist.length}</span>
+                                <span>{wishlist?.length}</span>
                             )}
                         </div>
                     </div>
-                    <Link href='/login' className='button'>
-                        Sign In
-                    </Link>
+                    {user ? (
+                        <Link href='/profile' className='button'>
+                            Go to profile
+                        </Link>
+                    ) : (
+                        <Link href='/login' className='button'>
+                            Sign In
+                        </Link>
+                    )}
                     <div className={styles.socials}>
                         <img src='/icons/instagram-black.svg' alt='instagram' />
                         <img src='/icons/facebook-black.svg' alt='facebook' />

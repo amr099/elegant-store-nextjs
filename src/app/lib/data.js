@@ -85,7 +85,7 @@ export async function fetchOrders() {
 export async function fetchLastOrder() {
     try {
         const data =
-            await sql`SELECT * FROM orders ORDER BY order_id DESC LIMIT 1;`;
+            await sql`SELECT * FROM orders ORDER BY order_date DESC LIMIT 1;`;
         return data.rows[0];
     } catch (e) {
         console.log("Failed to fetch last order \n", e);

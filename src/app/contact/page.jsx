@@ -22,12 +22,7 @@ export default function Page() {
                     </p>
                 </div>
                 <div className={styles.aboutGrid}>
-                    <Image
-                        src='/imgs/sale.png'
-                        alt='about'
-                        width={50}
-                        height={50}
-                    />
+                    <img src='/imgs/sale.png' alt='about' />
                     <div className={styles.aboutContent}>
                         <h4>About Us</h4>
                         <p>
@@ -38,12 +33,7 @@ export default function Page() {
                         <Link href='/shop'>
                             {" "}
                             Shop now{" "}
-                            <Image
-                                src='/icons/arrow-right.svg'
-                                alt='arrow'
-                                width={50}
-                                height={50}
-                            />
+                            <img src='/icons/arrow-right.svg' alt='arrow' />
                         </Link>
                     </div>
                 </div>

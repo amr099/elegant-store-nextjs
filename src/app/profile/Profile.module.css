@@ -35,6 +35,10 @@
         width: 100%;
     }
 
+    .logout:hover {
+        border: 1px solid var(--neutral-3);
+    }
+
     .a {
         margin-bottom: 2rem;
         color: var(--neutral-4);

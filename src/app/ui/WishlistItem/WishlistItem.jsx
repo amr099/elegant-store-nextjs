@@ -4,15 +4,8 @@ import { useMediaQuery } from "react-responsive";
 import styles from "./WishlistItem.module.css";
 import Image from "next/image";
 
-export default function WishlistItem({ item }) {
+export default function WishlistItem({ item, onDelete }) {
     const isMobile = useMediaQuery({ maxWidth: 769 });
-
-    const onDelete = async (product_id) => {
-        const response = await fetch("/api/wishlist/remove", {
-            method: "DELETE",
-            body: JSON.stringify({ product_id: product_id }),
-        });
-    };
 
     return !isMobile ? (
         <tr className={styles.wishlistItem}>

@@ -62,6 +62,12 @@ img {
     max-width: 100%;
 }
 
+.center-content {
+    min-height: 50vh;
+    display: grid;
+    place-content: center;
+}
+
 .flex {
     display: flex;
     gap: 1rem;
@@ -164,12 +170,12 @@ button,
     background-color: var(--neutral-7);
     color: #fff;
     border-radius: 8px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     transition: all 0.4s ease-in-out;
 
     &:hover {
         background-color: transparent;
-        border: 2px solid var(--neutral-7);
+        border: 1px solid var(--neutral-7);
         color: var(--neutral-7);
         cursor: pointer;
     }

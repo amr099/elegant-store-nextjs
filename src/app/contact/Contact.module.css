@@ -77,7 +77,6 @@
     }
 
     .input::placeholder {
-        font-family: inter;
         color: #6c7275;
     }
 }

@@ -9,6 +9,7 @@ import CartContextProvider from "@/context/CartContext";
 import DrawersContextProvider from "@/context/DrawersContext";
 import FlyoutCart from "./ui/FlyoutCart/FlyoutCart";
 import { fetchWhishlist } from "./lib/data";
+import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
     const wishlist = await fetchWhishlist();
+    const user = await getServerSession();
     return (
         <html lang='en'>
             <body className={inter.className}>
@@ -27,7 +29,7 @@ export default async function RootLayout({ children }) {
                     <DrawersContextProvider>
                         <Navbar />
                         <FlyoutCart />
-                        <MobileNav wishlist={wishlist} />
+                        <MobileNav wishlist={wishlist} user={user} />
                         {children}
                     </DrawersContextProvider>
                 </CartContextProvider>

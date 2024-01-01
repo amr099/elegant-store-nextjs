@@ -8,7 +8,7 @@ export default function Error({ error, reset }) {
     }, [error]);
 
     return (
-        <div>
+        <div className='center-content'>
             <h6>Something went wrong!</h6>
             <button onClick={() => reset()}>Try again</button>
         </div>
