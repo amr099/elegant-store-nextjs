@@ -10,7 +10,6 @@ export default function ProductDetails({ product, wishlist }) {
     const [wishlistState, setWishlist] = useState(wishlist);
     const router = useRouter();
     const pathname = usePathname();
-    console.log(router.asPath);
     const { cart, AddToCart } = useContext(CartContext);
 
     const addToWishlist = async (product_id) => {

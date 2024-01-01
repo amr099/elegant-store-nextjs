@@ -57,11 +57,14 @@ export default function Navbar() {
                     </Link>
                 </nav>
                 <div className={styles.icons}>
-                    <img
-                        src='/icons/search.svg'
-                        alt='search'
-                        className='icon'
-                    />
+                    <Link href='/search'>
+                        <img
+                            src='/icons/search.svg'
+                            alt='search'
+                            className='icon'
+                        />
+                    </Link>
+
                     <Link href='/profile'>
                         <img
                             src='/icons/user.svg'

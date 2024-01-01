@@ -12,10 +12,35 @@ export async function fetchProducts() {
     }
 }
 
-export async function fetchSortedProducts() {
+export async function fetchSortedProducts(sortby) {
     unstable_noStore();
     try {
-        const data = await sql`SELECT * from products ORDER BY price `;
+        let data;
+        switch (sortby) {
+            case "alpha-asc":
+                data = await sql`SELECT * from products ORDER BY name ASC`;
+                break;
+            case "alpha-des":
+                data = await sql`SELECT * from products ORDER BY name DESC`;
+                break;
+            case "price-asc":
+                data = await sql`SELECT * from products ORDER BY price ASC`;
+                break;
+            case "price-des":
+                data = await sql`SELECT * from products ORDER BY price DESC`;
+                break;
+            case "newest":
+                data =
+                    await sql`SELECT * from products ORDER BY created_at DESC`;
+                break;
+            case "oldest":
+                data =
+                    await sql`SELECT * from products ORDER BY created_at ASC `;
+                break;
+            default:
+                data = await sql`SELECT * from products`;
+                break;
+        }
         return data.rows;
     } catch (e) {
         console.log("Failed to fetch products \n", e);
@@ -33,11 +58,14 @@ export async function fetchProduct(id) {
     }
 }
 
-export async function searchProduct(name) {
+export async function searchProduct(q) {
     unstable_noStore();
     try {
+        if (q === "") {
+            return [];
+        }
         const data =
-            await sql`SELECT * from products where name ILIKE ${`%${name}%`}`;
+            await sql`SELECT * from products where name ILIKE ${`%${q}%`}`;
         return data.rows;
     } catch (e) {
         console.log("Failed to fetch product \n", e);

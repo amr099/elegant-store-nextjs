@@ -17,9 +17,8 @@ export default function ShopCover({ categories, category }) {
     };
 
     const onSort = (sortby) => {
-        console.log(sortby);
         const params = new URLSearchParams(searchParams);
-        params.set("sort", "price");
+        params.set("sort", sortby);
         replace(`${pathname}?${params.toString()}`);
     };
     return (
@@ -59,8 +58,20 @@ export default function ShopCover({ categories, category }) {
                             onChange={(e) => onSort(e.target.value)}
                         >
                             <option value='' disabled selected></option>
-                            <option value='asc'>Price (ASC)</option>
-                            <option value='dec'>Price (DEC)</option>
+                            <option value='alpha-asc'>
+                                Alphabetically, A-Z
+                            </option>
+                            <option value='alpha-des'>
+                                Alphabetically, Z-A
+                            </option>
+                            <option value='price-asc'>
+                                Price (Low to High)
+                            </option>
+                            <option value='price-des'>
+                                Price (High to Low)
+                            </option>
+                            <option value='newest'>New to Old</option>
+                            <option value='oldest'>Old to New</option>
                         </select>
                     </div>
                 </div>

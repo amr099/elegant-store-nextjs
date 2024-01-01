@@ -4,7 +4,7 @@ import ProductCard from "../../ui/ProductCard/ProductCard";
 import styles from "../Shop.module.css";
 import ShopCover from "../ShopCover";
 
-export default async function Page({ params }) {
+export default async function Page({ params, searchParams }) {
     const category = decodeURIComponent(params.category);
     const products = await fetchProductsByCategory(category);
     const categories = await fetchCategories();

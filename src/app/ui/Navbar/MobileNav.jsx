@@ -5,12 +5,20 @@ import styles from "./MobileNav.module.css";
 import Link from "next/link";
 import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export default function MobileNav({ wishlist, user }) {
     const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const { replace } = useRouter();
     const { mobileNav, setMobileNav } = useContext(DrawersContext);
     const { count } = useContext(CartContext);
+
+    const onSearch = (q) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("q", q);
+        replace(`/search?${params.toString()}`);
+    };
 
     const activeLink = {
         fontWeight: 700,
@@ -34,7 +42,11 @@ export default function MobileNav({ wishlist, user }) {
                             onClick={() => setMobileNav(false)}
                         />
                     </div>
-                    <input type='search' placeholder='Search' />
+                    <input
+                        type='search'
+                        placeholder='Search'
+                        onChange={(e) => onSearch(e.target.value)}
+                    />
                     {/* <nav> */}
                     <Link href='/' style={pathname === "/" ? activeLink : {}}>
                         Home
