@@ -19,7 +19,7 @@ export default function ShopCover({ categories, category }) {
     const onSort = (sortby) => {
         const params = new URLSearchParams(searchParams);
         params.set("sort", sortby);
-        replace(`${pathname}?${params.toString()}`);
+        replace(`/shop?${params.toString()}`);
     };
     return (
         <>

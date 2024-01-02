@@ -5,20 +5,13 @@ import styles from "./MobileNav.module.scss";
 import Link from "next/link";
 import { CartContext } from "@/context/CartContext";
 import { DrawersContext } from "@/context/DrawersContext";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import SearchInput from "./../../search/SearchInput";
 
 export default function MobileNav({ wishlist, user }) {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const { replace } = useRouter();
     const { mobileNav, setMobileNav } = useContext(DrawersContext);
     const { count } = useContext(CartContext);
-
-    const onSearch = (q) => {
-        const params = new URLSearchParams(searchParams);
-        params.set("q", q);
-        replace(`/search?${params.toString()}`);
-    };
 
     const activeLink = {
         fontWeight: 700,
@@ -42,11 +35,7 @@ export default function MobileNav({ wishlist, user }) {
                             onClick={() => setMobileNav(false)}
                         />
                     </div>
-                    <input
-                        type='search'
-                        placeholder='Search'
-                        onChange={(e) => onSearch(e.target.value)}
-                    />
+                    <SearchInput />
                     {/* <nav> */}
                     <Link href='/' style={pathname === "/" ? activeLink : {}}>
                         Home
@@ -95,9 +84,6 @@ export default function MobileNav({ wishlist, user }) {
                                     className='icon'
                                 />
                             </Link>
-                            {wishlist?.length != 0 && (
-                                <span>{wishlist?.length}</span>
-                            )}
                         </div>
                     </div>
                     {user ? (

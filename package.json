@@ -23,7 +23,8 @@
         "react-router-dom": "^6.21.1",
         "responsive": "^2.0.0",
         "sass": "^1.69.6",
-        "swiper": "^11.0.5"
+        "swiper": "^11.0.5",
+        "use-debounce": "^10.0.0"
     },
     "devDependencies": {
         "@types/react": "18.2.45",

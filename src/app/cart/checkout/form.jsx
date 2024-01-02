@@ -37,13 +37,6 @@ export default function Form() {
     const onSubmit = async (data) => {
         try {
             dispatch({ type: "LOADING" });
-            const response = await fetch("/api/neworder", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ ...data, amount: total }),
-            });
             if (total <= 0) {
                 dispatch({
                     type: "ERROR",
@@ -51,6 +44,13 @@ export default function Form() {
                 });
                 return;
             }
+            const response = await fetch("/api/neworder", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ...data, amount: total }),
+            });
 
             if (response.ok) {
                 const data = await response.json();

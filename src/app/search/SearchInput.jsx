@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function SearchInput() {
     const pathname = usePathname();
@@ -11,14 +12,15 @@ export default function SearchInput() {
         boxSizing: "border-box",
         display: "block",
         width: "80%",
-        margin: "2rem auto 4rem",
+        margin: "0 auto",
     };
 
-    const onSearch = (q) => {
+    const onSearch = useDebouncedCallback((q) => {
+        console.log(q);
         const params = new URLSearchParams(searchParams);
         params.set("q", q);
         replace(`${pathname}?${params.toString()}`);
-    };
+    }, 300);
 
     return (
         <input
