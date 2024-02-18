@@ -111,6 +111,8 @@ export async function fetchOrders() {
 }
 
 export async function fetchLastOrder() {
+    unstable_noStore();
+
     try {
         const data =
             await sql`SELECT * FROM orders ORDER BY order_date DESC LIMIT 1;`;
@@ -125,10 +127,9 @@ export async function fetchWhishlist() {
 
     const session = await getServerSession();
     try {
-        const data = await sql`SELECT * FROM products WHERE product_id IN 
-                (SELECT product_id FROM wishlist_items WHERE wishlist_id = 
-                (SELECT id FROM wishlists WHERE user_id =
-                (SELECT user_id FROM users WHERE email = ${session.user.email})))`;
+        const data = await sql`SELECT * FROM products WHERE product_id IN
+                (SELECT product_id FROM wishlists WHERE user_id =
+                (SELECT user_id FROM users WHERE email = ${session.user.email}))`;
         return data.rows;
     } catch (e) {
         console.log("Failed to fetch wishlist \n", e);

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import styles from "./Profile.module.scss";
 import { useReducer } from "react";
 import Loading from "../ui/Loading/Loading";
+import { updateUserInfo } from "../lib/actions";
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -32,33 +33,19 @@ export default function Page() {
     const onSubmit = async (data) => {
         try {
             dispatch({ type: "LOADING" });
-            const response = await fetch("/api/userinfo/update", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                // Handle successful update
+            const action = await updateUserInfo(data);
+            if (action?.success) {
                 dispatch({ type: "SUCCESS" });
-                console.log("User information updated successfully");
                 reset();
             } else {
                 dispatch({
                     type: "ERROR",
                     payload: "Failed to update user information",
                 });
-                // Handle error
-                console.error("Failed to update user information");
+                console.log(action.error);
             }
         } catch (error) {
-            console.error("Error updating user information:", error);
-            dispatch({
-                type: "ERROR",
-                payload: "Error updating user information",
-            });
+            console.log(error);
         }
     };
 
@@ -73,9 +60,7 @@ export default function Page() {
                         type='text'
                         id='name'
                         name='name'
-                        {...register("name", {
-                            required: "Full name is required",
-                        })}
+                        {...register("name")}
                         placeholder='Full name'
                     />
                     {errors.name && <p>{errors.name.message}</p>}
@@ -86,9 +71,7 @@ export default function Page() {
                         type='text'
                         id='username'
                         name='username'
-                        {...register("username", {
-                            required: "Username name is required",
-                        })}
+                        {...register("username")}
                         placeholder='Username'
                     />
                     {errors.dname && <p>{errors.dname.message}</p>}
@@ -99,13 +82,7 @@ export default function Page() {
                         type='email'
                         id='email'
                         name='email'
-                        {...register("email", {
-                            required: "Email is required",
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                message: "Invalid email address",
-                            },
-                        })}
+                        {...register("email")}
                         placeholder='Email'
                     />
                     {errors.email && <p>{errors.email.message}</p>}
@@ -132,13 +109,11 @@ export default function Page() {
                         type='password'
                         id='newpassword'
                         name='newpassword'
-                        {...register("newpassword", {
-                            required: "New Password is required",
-                        })}
+                        {...register("newpassword")}
                     />
                     {errors.newpassword && <p>{errors.newpassword.message}</p>}
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor='repeatpassword'>Repeat Password:</label>
                     <input
                         type='password'
@@ -154,14 +129,14 @@ export default function Page() {
                     {errors.repeatpassword && (
                         <p>{errors.repeatpassword.message}</p>
                     )}
-                </div>
+                </div> */}
                 {state?.error && <p className='error'>{state.error}</p>}
                 {state?.success && (
                     <p className='success'>
                         Your information have been updated successfully!
                     </p>
                 )}
-                <button type='submit' disables={state?.loading}>
+                <button type='submit' disabled={state?.loading}>
                     {state?.loading ? <Loading /> : "Save changes"}
                 </button>
             </fieldset>

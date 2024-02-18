@@ -2,76 +2,41 @@
 
 import { useRouter } from "next/navigation";
 import styles from "../Cart.module.scss";
-import { useContext, useReducer } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./../../../context/CartContext";
 import Loading from "@/app/ui/Loading/Loading";
 import { useForm } from "react-hook-form";
-
-const reducer = (state, action) => {
-    switch (action.type) {
-        case "LOADING":
-            return { success: false, loading: true, error: "" };
-        case "SUCCESS":
-            return { success: true, loading: false, error: "" };
-        case "ERROR":
-            return { success: false, loading: false, error: action.payload };
-    }
-};
+import { addNewOrder } from "./../../lib/actions";
 
 export default function Form() {
-    const [state, dispatch] = useReducer(reducer, {
-        success: false,
-        loading: false,
-        error: "",
-    });
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const { total } = useContext(CartContext);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const { total, clearCart } = useContext(CartContext);
     const { replace } = useRouter();
 
-    console.log(errors.name);
-
     const onSubmit = async (data) => {
+        setLoading(true);
         try {
-            dispatch({ type: "LOADING" });
             if (total <= 0) {
-                dispatch({
-                    type: "ERROR",
-                    payload: "The order has not items!",
-                });
+                setError("The order has not items!");
                 return;
             }
-            const response = await fetch("/api/neworder", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ ...data, amount: total }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
+            const action = await addNewOrder({ ...data, amount: total });
+            if (action?.success) {
+                clearCart();
                 replace("/cart/complete");
-                console.log(
-                    "Order placed successfully. Order ID:",
-                    data.orderId
-                );
-                dispatch({ type: "SUCCESS" });
-            } else {
-                if (response.status === 400)
-                    dispatch({ type: "ERROR", payload: response.statusText });
-                else {
-                    dispatch({ type: "ERROR", payload: response.statusText });
-                    console.log("Failed to place order:", response.statusText);
-                }
+            } else if (action?.error) {
+                setError(action.error);
             }
         } catch (error) {
-            dispatch({ type: "ERROR", payload: "something went wrong" });
-            console.log("Error placing order:", error);
+            console.log(error);
         }
+        setLoading(false);
     };
 
     return (
@@ -110,12 +75,11 @@ export default function Form() {
                     <input
                         type='tel'
                         id='phone'
-                        {...register("phone", { pattern: /01[0-9]{9}/ })}
+                        {...register("phone", { required: true })}
                     />
                     {errors.phone && (
                         <span className={styles.error}>
-                            Invalid phone number format. It should start with 01
-                            and have 11 digits.
+                            {error.phone.message}
                         </span>
                     )}
                 </div>
@@ -190,14 +154,9 @@ export default function Form() {
                         <input type='text' id='cvv' name='cvv' required />
                     </div>
                 </fieldset> */}
-            {state.error && <p className={styles.error}>{state.error}</p>}
-            {state.success && (
-                <p className={styles.success}>
-                    Order has been placed successfully.
-                </p>
-            )}
-            <button disabled={state.loading}>
-                {state.loading ? <Loading /> : "Place Order"}
+            {error && <p className={styles.error}>{error}</p>}
+            <button disabled={loading}>
+                {loading ? <Loading /> : "Place Order"}
             </button>
         </form>
     );

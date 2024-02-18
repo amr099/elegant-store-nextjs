@@ -37,9 +37,6 @@ export async function POST(request: Request) {
         const user = await sql`
             SELECT user_id FROM users WHERE username = ${username};
         `;
-        const newWishlist = await sql`
-            INSERT INTO wishlists (user_id) VALUES (${user.rows[0].user_id})
-        `;
 
         return NextResponse.json({ success: true });
     } catch (e) {

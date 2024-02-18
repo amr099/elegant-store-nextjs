@@ -2,51 +2,11 @@
 
 import styles from "./Product.module.scss";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
+import { addToWishlist, removeFromWishlist } from "./../../lib/actions";
 export default function ProductDetails({ product, wishlist }) {
-    const [wishlistState, setWishlist] = useState(wishlist);
     const { cart, AddToCart } = useContext(CartContext);
-
-    const addToWishlist = async (product_id) => {
-        try {
-            const response = await fetch("/api/wishlist/add", {
-                method: "POST",
-                body: JSON.stringify({
-                    product_id: product_id,
-                }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setWishlist(data.wishlist);
-            } else {
-                console.error("Failed to add to wishlist");
-            }
-        } catch (error) {
-            console.error("Error adding to wishlist", error);
-        }
-    };
-
-    const removeFromWishlist = async (product_id) => {
-        try {
-            const response = await fetch("/api/wishlist/remove", {
-                method: "DELETE",
-                body: JSON.stringify({
-                    product_id: product_id,
-                }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setWishlist(data.wishlist);
-            } else {
-                console.error("Failed to remove from wishlist");
-            }
-        } catch (error) {
-            console.error("Error removing from wishlist", error);
-        }
-    };
 
     return (
         <div className='container'>
@@ -96,7 +56,7 @@ export default function ProductDetails({ product, wishlist }) {
                                 ? "Added to cart"
                                 : "Add to cart"}
                         </button>
-                        {!wishlistState?.find(
+                        {!wishlist?.find(
                             (item) => item.product_id == product.product_id
                         ) ? (
                             <button
