@@ -1,17 +1,11 @@
 TODO:- 
-    - fix CSS and responsiveness
-    
-    - Shop optimization
-        - filters
-        - sort
-        - see more or pagination
+    - handle change email
+    - protect complete order route
+    - check responsive
+    - see more or pagination
+    - UI
         - grid options
-
-    - User optimization
-        - Forget password
-        - handle remember me.
-        - update user info.
+        - product gallery
 
 Nice to add:- 
     - dashboard 
-    - payment gateway
