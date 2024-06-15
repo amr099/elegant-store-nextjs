@@ -1,6 +1,7 @@
 import styles from "../Profile.module.scss";
 import { fetchWhishlist } from "@/app/lib/data";
 import Wishlist from "./wishlist";
+import { Suspense } from "react";
 export default async function Page() {
     const wishlist = await fetchWhishlist();
 
@@ -14,7 +15,9 @@ export default async function Page() {
                 </tr>
             </thead>
             <tbody>
-                <Wishlist wishlist={wishlist} />
+                <Suspense fallback='Loading...'>
+                    <Wishlist wishlist={wishlist} />
+                </Suspense>
             </tbody>
         </table>
     );

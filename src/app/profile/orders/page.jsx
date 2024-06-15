@@ -1,6 +1,7 @@
 import { fetchOrders } from "@/app/lib/data";
 import styles from "../Profile.module.scss";
 import Order from "./../../ui/Order/Order";
+import { Suspense } from "react";
 
 export default async function Page() {
     const userOrders = await fetchOrders();
@@ -15,9 +16,11 @@ export default async function Page() {
                 </tr>
             </thead>
             <tbody>
-                {userOrders?.map((order) => (
-                    <Order item={order} key={order?.order_id} />
-                ))}
+                <Suspense fallback='Loading...'>
+                    {userOrders?.map((order) => (
+                        <Order item={order} key={order?.order_id} />
+                    ))}
+                </Suspense>
             </tbody>
         </table>
     );

@@ -70,8 +70,8 @@ export default function ShopCover({ categories, category }) {
                             <option value='price-des'>
                                 Price (High to Low)
                             </option>
-                            <option value='newest'>New to Old</option>
-                            <option value='oldest'>Old to New</option>
+                            <option value='newest'>Recent to Old</option>
+                            <option value='oldest'>Old to Recent</option>
                         </select>
                     </div>
                 </div>

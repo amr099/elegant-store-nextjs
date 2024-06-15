@@ -7,6 +7,7 @@ import {
     fetchSortedProducts,
 } from "../lib/data";
 import ShopCover from "./ShopCover";
+import { Suspense } from "react";
 
 export default async function Page({ searchParams }) {
     let products = await fetchProducts();
@@ -19,15 +20,19 @@ export default async function Page({ searchParams }) {
 
     return (
         <div className='container'>
-            <ShopCover categories={categories} />
+            <Suspense fallback='Loading...'>
+                <ShopCover categories={categories} />
+            </Suspense>
             <div className={styles.shopGrid}>
-                {products?.map((item) => (
-                    <ProductCard
-                        item={item}
-                        key={item.product_id}
-                        wishlist={wishlist}
-                    />
-                ))}
+                <Suspense fallback='Loading...'>
+                    {products?.map((item) => (
+                        <ProductCard
+                            item={item}
+                            key={item.product_id}
+                            wishlist={wishlist}
+                        />
+                    ))}
+                </Suspense>
             </div>
         </div>
     );

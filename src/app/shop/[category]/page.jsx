@@ -3,6 +3,7 @@ import { fetchCategories, fetchProductsByCategory } from "../../lib/data";
 import ProductCard from "../../ui/ProductCard/ProductCard";
 import styles from "../Shop.module.scss";
 import ShopCover from "../ShopCover";
+import { Suspense } from "react";
 
 export default async function Page({ params, searchParams }) {
     const category = decodeURIComponent(params.category);
@@ -15,11 +16,15 @@ export default async function Page({ params, searchParams }) {
 
     return (
         <div className='container'>
-            <ShopCover categories={categories} category={category} />
+            <Suspense fallback='Loading...'>
+                <ShopCover categories={categories} category={category} />
+            </Suspense>
             <div className={styles.shopGrid}>
-                {products?.map((item) => (
-                    <ProductCard item={item} key={item.product_id} />
-                ))}
+                <Suspense fallback='Loading...'>
+                    {products?.map((item) => (
+                        <ProductCard item={item} key={item.product_id} />
+                    ))}
+                </Suspense>
             </div>
         </div>
     );
