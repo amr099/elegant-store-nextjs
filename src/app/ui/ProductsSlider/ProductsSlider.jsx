@@ -10,6 +10,13 @@ export default function ProductsSlider({ items, wishlist }) {
     useEffect(() => {
         register();
         const params = {
+            autoplay: {
+                delay: 5000,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
             slidesPerView: 1,
             breakpoints: {
                 640: {
