@@ -40,12 +40,18 @@ export default function Form() {
                 <input
                     type='username'
                     name='username'
-                    placeholder='username'
+                    // placeholder='username'
                     required
+                    defaultValue='user'
                 />
             </div>
             <div>
-                <input type='password' placeholder='Password' required />
+                <input
+                    type='password'
+                    // placeholder='Password'
+                    required
+                    defaultValue='123456789'
+                />
             </div>
 
             <div>

@@ -81,6 +81,7 @@
         grid-template-rows: repeat(3, 320px);
         grid-template-columns: 100%;
         .category {
+            background-position: right;
             .titleDiv {
                 padding: 1rem;
             }

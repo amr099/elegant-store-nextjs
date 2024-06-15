@@ -6,6 +6,8 @@ import Image from "next/image";
 import HomeSlider from "./ui/HomeSlider/HomeSlider";
 import ProductsSlider from "./ui/ProductsSlider/ProductsSlider";
 import { fetchCategories, fetchProducts, fetchWhishlist } from "./lib/data";
+import { Suspense } from "react";
+import FullPageLoading from "@/app/ui/Loading/FullPageLoading";
 
 export default async function Home() {
     const categories = await fetchCategories();
@@ -17,29 +19,33 @@ export default async function Home() {
             <HomeSlider />
             <div className='container'>
                 <div className={styles.categoriesGrid}>
-                    {categories?.map((cat) => (
-                        <div
-                            className={styles.category}
-                            key={cat.category_id}
-                            style={{ backgroundImage: `url(${cat.img_url})` }}
-                        >
-                            <div className={styles.titleDiv}>
-                                <h6 className={styles.h6}>{cat?.name}</h6>
-                                <Link
-                                    href={`/shop/${cat?.name}`}
-                                    className='animated'
-                                >
-                                    Shop Now{" "}
-                                    <Image
-                                        src='/icons/arrow-right.svg'
-                                        alt='arrow'
-                                        width={24}
-                                        height={24}
-                                    />
-                                </Link>
+                    <Suspense fallback={<FullPageLoading />}>
+                        {categories?.map((cat) => (
+                            <div
+                                className={styles.category}
+                                key={cat.category_id}
+                                style={{
+                                    backgroundImage: `url(${cat.img_url})`,
+                                }}
+                            >
+                                <div className={styles.titleDiv}>
+                                    <h6 className={styles.h6}>{cat?.name}</h6>
+                                    <Link
+                                        href={`/shop/${cat?.name}`}
+                                        className='animated'
+                                    >
+                                        Shop Now{" "}
+                                        <Image
+                                            src='/icons/arrow-right.svg'
+                                            alt='arrow'
+                                            width={24}
+                                            height={24}
+                                        />
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </Suspense>
                 </div>
 
                 <div className={styles.sectionHeader}>
@@ -54,8 +60,9 @@ export default async function Home() {
                         />
                     </Link>
                 </div>
-
-                <ProductsSlider items={products} wishlist={wishlist} />
+                <Suspense fallback={<FullPageLoading />}>
+                    <ProductsSlider items={products} wishlist={wishlist} />
+                </Suspense>
 
                 <Cards />
             </div>

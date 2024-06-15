@@ -10,9 +10,15 @@ export default function ProductsSlider({ items, wishlist }) {
     useEffect(() => {
         register();
         const params = {
-            slidesPerView: 3,
+            slidesPerView: 2,
             breakpoints: {
-                768: {
+                992: {
+                    slidesPerView: 2,
+                },
+                1400: {
+                    slidesPerView: 3,
+                },
+                1600: {
                     slidesPerView: 4,
                 },
             },
