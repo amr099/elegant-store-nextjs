@@ -66,7 +66,7 @@ export default function Page() {
                     {errors.name && <p>{errors.name.message}</p>}
                 </div>
                 <div>
-                    <label htmlFor='username'>User name:</label>
+                    <label htmlFor='username'>Username:</label>
                     <input
                         type='text'
                         id='username'
