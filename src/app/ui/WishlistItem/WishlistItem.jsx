@@ -3,8 +3,9 @@
 import { useMediaQuery } from "react-responsive";
 import styles from "./WishlistItem.module.scss";
 import Image from "next/image";
+import { removeFromWishlist } from "@/app/lib/actions";
 
-export default function WishlistItem({ item, onDelete }) {
+export default function WishlistItem({ item }) {
     const isMobile = useMediaQuery({ maxWidth: 769 });
 
     return !isMobile ? (
@@ -17,7 +18,7 @@ export default function WishlistItem({ item, onDelete }) {
                         alt='close'
                         width={24}
                         height={24}
-                        onClick={() => onDelete(item.product_id)}
+                        onClick={() => removeFromWishlist(item.product_id)}
                     />
                     <img
                         src={item.img_url}
