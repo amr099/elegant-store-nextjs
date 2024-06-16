@@ -42,7 +42,7 @@ export default function Form() {
                     name='username'
                     // placeholder='username'
                     required
-                    defaultValue='user'
+                    defaultValue='user1'
                 />
             </div>
             <div>
